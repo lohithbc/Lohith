@@ -1,10 +1,10 @@
 /**
- * Cyberpunk HUD & Retro-Modern Portfolio Controller Script
- * Manages canvas visual systems, simulated loggers, metric fluctuations, and core portfolio behavior.
+ * Cyberpunk HUD & Retro-Modern Portfolio Controller Script - Light Mode
+ * Manages warping grid mesh canvas, theme colors switcher, process logs, and portfolio interactions.
  */
 
-// Global active theme RGB cache (default to Amber)
-window.activeThemeRGB = '245, 158, 11';
+// Global active theme RGB cache (default to Cobalt Blue in light mode)
+window.activeThemeRGB = '37, 99, 235';
 
 document.addEventListener('DOMContentLoaded', () => {
   initCanvasBackground();
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * 1. Interactive Dual-Layer Canvas Background (3D Perspective Grid + Node Plexus)
+ * 1. Interactive Warping Grid Mesh & Node Plexus Canvas Background
  */
 function initCanvasBackground() {
   const canvas = document.getElementById('bg-canvas');
@@ -28,22 +28,41 @@ function initCanvasBackground() {
 
   const ctx = canvas.getContext('2d');
   let particles = [];
-  const particleCount = 75;
+  const particleCount = 60;
   const connectionDistance = 110;
-  const mouse = { x: null, y: null, radius: 160 };
+  const mouse = { x: null, y: null, radius: 180 };
 
-  // Grid animation configuration
-  let gridOffset = 0;
-  const gridSpeed = 0.35; // Speed of forward grid motion
+  // Grid mesh variables
+  const gridSpacing = 65; // Distance between grid lines
+  let gridPoints = []; // 2D array storing grid nodes
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    initializeGridPoints();
   }
   window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
 
-  // Track mouse
+  // Initialize static grid mesh coordinates
+  function initializeGridPoints() {
+    gridPoints = [];
+    const cols = Math.ceil(canvas.width / gridSpacing) + 2;
+    const rows = Math.ceil(canvas.height / gridSpacing) + 2;
+
+    for (let c = 0; c < cols; c++) {
+      gridPoints[c] = [];
+      for (let r = 0; r < rows; r++) {
+        gridPoints[c][r] = {
+          baseX: (c - 1) * gridSpacing,
+          baseY: (r - 1) * gridSpacing,
+          x: (c - 1) * gridSpacing,
+          y: (r - 1) * gridSpacing
+        };
+      }
+    }
+  }
+
+  // Track mouse position
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
@@ -54,13 +73,13 @@ function initCanvasBackground() {
     mouse.y = null;
   });
 
-  // Particle Node Blueprint
+  // Floating Particle Node Blueprint
   class Particle {
     constructor() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.4;
-      this.vy = (Math.random() - 0.5) * 0.4;
+      this.vx = (Math.random() - 0.5) * 0.35;
+      this.vy = (Math.random() - 0.5) * 0.35;
       this.radius = Math.random() * 2 + 0.8;
     }
 
@@ -68,23 +87,22 @@ function initCanvasBackground() {
       this.x += this.vx;
       this.y += this.vy;
 
-      // Wrap boundaries instead of simple bounce for seamless space
       if (this.x < 0) this.x = canvas.width;
       if (this.x > canvas.width) this.x = 0;
       if (this.y < 0) this.y = canvas.height;
       if (this.y > canvas.height) this.y = 0;
 
-      // Mouse interactive pull
+      // Mouse interactive push
       if (mouse.x !== null && mouse.y !== null) {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const distance = Math.hypot(dx, dy);
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
         
-        if (distance < mouse.radius) {
-          const force = (mouse.radius - distance) / mouse.radius;
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
           const angle = Math.atan2(dy, dx);
-          this.x += Math.cos(angle) * force * 0.35;
-          this.y += Math.sin(angle) * force * 0.35;
+          this.x += Math.cos(angle) * force * 0.45;
+          this.y += Math.sin(angle) * force * 0.45;
         }
       }
     }
@@ -92,7 +110,7 @@ function initCanvasBackground() {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${window.activeThemeRGB}, 0.4)`; // Dynamic node color
+      ctx.fillStyle = `rgba(${window.activeThemeRGB}, 0.25)`; // Dynamic node color
       ctx.fill();
     }
   }
@@ -102,54 +120,59 @@ function initCanvasBackground() {
     particles.push(new Particle());
   }
 
-  // Draw 3D Retro Synthwave Grid
-  function drawPerspectiveGrid() {
-    const horizon = canvas.height * 0.45; // Horizon height
-    const gridYStart = horizon + 20;
-    const gridHeight = canvas.height - gridYStart;
-    
-    ctx.strokeStyle = `rgba(${window.activeThemeRGB}, 0.04)`; // Dynamic grid color
-    ctx.lineWidth = 1;
+  // Initialize canvas
+  resizeCanvas();
 
-    // Draw vanishing perspective lines radiating from top-center horizon
-    const centerX = canvas.width / 2;
-    const lineCount = 36;
-    for (let i = 0; i <= lineCount; i++) {
-      const xPercent = (i / lineCount) * 2 - 1; // Range from -1 to 1
-      const startX = centerX + xPercent * 30; // Radiate from centered point
-      const endX = centerX + xPercent * (canvas.width * 1.5); // Spread outward at the bottom
-      
-      ctx.beginPath();
-      ctx.moveTo(startX, gridYStart);
-      ctx.lineTo(endX, canvas.height);
-      ctx.stroke();
+  // Draw Warped grid net
+  function drawWarpedGrid() {
+    const cols = gridPoints.length;
+    if (cols === 0) return;
+    const rows = gridPoints[0].length;
+
+    // 1. Calculate warped positions based on mouse proximity
+    for (let c = 0; c < cols; c++) {
+      for (let r = 0; r < rows; r++) {
+        const p = gridPoints[c][r];
+        p.x = p.baseX;
+        p.y = p.baseY;
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = p.baseX - mouse.x;
+          const dy = p.baseY - mouse.y;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < mouse.radius) {
+            const force = (mouse.radius - dist) / mouse.radius;
+            const angle = Math.atan2(dy, dx);
+            // Push grid vertices away from mouse
+            p.x += Math.cos(angle) * force * 16;
+            p.y += Math.sin(angle) * force * 16;
+          }
+        }
+      }
     }
 
-    // Draw horizontal grid lines sliding forward towards screen
-    gridOffset = (gridOffset + gridSpeed) % 40; // Loop spacing interval
-    
-    // Dynamic exponential spacing to simulate perspective depth
-    let currentY = 0;
-    let step = 1;
-    while (currentY < gridHeight) {
-      // Calculate depth spacing
-      const normalizedPos = currentY / gridHeight;
-      
-      // Calculate drawing Y with perspective compression
-      const drawY = gridYStart + Math.pow(normalizedPos, 1.8) * gridHeight;
-      
-      if (drawY > gridYStart && drawY < canvas.height) {
-        // Fade lines near the horizon
-        const opacity = Math.min((drawY - gridYStart) / 100, 1) * 0.05;
-        ctx.strokeStyle = `rgba(${window.activeThemeRGB}, ${opacity})`; // Dynamic line color
-        ctx.beginPath();
-        ctx.moveTo(0, drawY);
-        ctx.lineTo(canvas.width, drawY);
-        ctx.stroke();
+    // 2. Draw horizontal and vertical lines linking vertices
+    ctx.strokeStyle = `rgba(${window.activeThemeRGB}, 0.055)`; // Hairline grid stroke
+    ctx.lineWidth = 0.8;
+
+    for (let c = 0; c < cols; c++) {
+      for (let r = 0; r < rows; r++) {
+        // Horizontal line
+        if (c < cols - 1) {
+          ctx.beginPath();
+          ctx.moveTo(gridPoints[c][r].x, gridPoints[c][r].y);
+          ctx.lineTo(gridPoints[c + 1][r].x, gridPoints[c + 1][r].y);
+          ctx.stroke();
+        }
+        // Vertical line
+        if (r < rows - 1) {
+          ctx.beginPath();
+          ctx.moveTo(gridPoints[c][r].x, gridPoints[c][r].y);
+          ctx.lineTo(gridPoints[c][r + 1].x, gridPoints[c][r + 1].y);
+          ctx.stroke();
+        }
       }
-      
-      step *= 1.15;
-      currentY += step + 8;
     }
   }
 
@@ -157,8 +180,8 @@ function initCanvasBackground() {
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Layer 1: Perspective Grid
-    drawPerspectiveGrid();
+    // Layer 1: Warped Grid Net
+    drawWarpedGrid();
 
     // Layer 2: Connecting Particle Plexus
     particles.forEach(p => {
@@ -173,11 +196,11 @@ function initCanvasBackground() {
         const dist = Math.hypot(dx, dy);
 
         if (dist < connectionDistance) {
-          const opacity = (1 - dist / connectionDistance) * 0.12;
+          const opacity = (1 - dist / connectionDistance) * 0.09;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(${window.activeThemeRGB}, ${opacity})`; // Dynamic line color
+          ctx.strokeStyle = `rgba(${window.activeThemeRGB}, ${opacity})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
@@ -288,11 +311,11 @@ function initPortfolioFilters() {
     filterBtn.addEventListener('click', () => {
       // Toggle active states on filter buttons
       filters.forEach(btn => {
-        btn.classList.remove('border-retroAmber', 'bg-retroAmber/10', 'text-retroAmber');
-        btn.classList.add('border-retroBorder', 'bg-transparent', 'text-gray-400', 'hover:text-white', 'hover:border-gray-500');
+        btn.classList.remove('border-theme-primary', 'bg-theme-primary/10', 'text-theme-primary');
+        btn.classList.add('border-retroBorder', 'bg-transparent', 'text-slate-500', 'hover:text-slate-800', 'hover:border-slate-400');
       });
-      filterBtn.classList.remove('border-retroBorder', 'bg-transparent', 'text-gray-400', 'hover:text-white', 'hover:border-gray-500');
-      filterBtn.classList.add('border-retroAmber', 'bg-retroAmber/10', 'text-retroAmber');
+      filterBtn.classList.remove('border-retroBorder', 'bg-transparent', 'text-slate-500', 'hover:text-slate-800', 'hover:border-slate-400');
+      filterBtn.classList.add('border-theme-primary', 'bg-theme-primary/10', 'text-theme-primary');
 
       const filterValue = filterBtn.getAttribute('data-filter');
 
@@ -386,7 +409,7 @@ function initProcessLogger() {
     if (logItem.type === 'success') typeTag = '[ OK ]';
     if (logItem.type === 'warning') typeTag = '[WARN]';
 
-    logLine.innerHTML = `<span class="text-gray-500">${timestamp}</span> <span class="font-bold">${typeTag}</span> ${logItem.msg}`;
+    logLine.innerHTML = `<span class="text-slate-400">${timestamp}</span> <span class="font-bold">${typeTag}</span> ${logItem.msg}`;
     logContainer.appendChild(logLine);
 
     logContainer.scrollTop = logContainer.scrollHeight;
@@ -450,7 +473,7 @@ function initContactForm() {
 
     statusLog.textContent = '[ STATUS: PREPARING_TRANSMISSION_PACKET... ]';
     statusLog.classList.remove('text-red-500', 'text-retroGreen');
-    statusLog.classList.add('text-retroAmber');
+    statusLog.classList.add('text-theme-primary');
 
     setTimeout(() => {
       statusLog.textContent = '[ STATUS: SHIFTING_PORTS_AND_COMPRESSING... ]';
@@ -461,12 +484,12 @@ function initContactForm() {
 
         if (name && email) {
           statusLog.textContent = '[ STATUS: PACKET_TRANSMITTED_SUCCESSFULLY ]';
-          statusLog.classList.remove('text-retroAmber');
+          statusLog.classList.remove('text-theme-primary');
           statusLog.classList.add('text-retroGreen');
           form.reset();
         } else {
           statusLog.textContent = '[ STATUS: ERROR_PACKET_DROPPED_EMPTY_FIELDS ]';
-          statusLog.classList.remove('text-retroAmber');
+          statusLog.classList.remove('text-theme-primary');
           statusLog.classList.add('text-red-500');
         }
       }, 1500);
@@ -484,12 +507,12 @@ function initThemeSwitcher() {
 
   if (btns.length === 0) return;
 
-  // Colors mapping for canvas updates
+  // Colors mapping for canvas updates (Light Mode safe values)
   const themeColors = {
-    amber: { rgb: '245, 158, 11', border: 'border-retroAmber', bg: 'bg-retroAmber/25', glow: 'shadow-[0_0_8px_rgba(245,158,11,0.4)]' },
-    green: { rgb: '16, 185, 129', border: 'border-emerald-500', bg: 'bg-emerald-500/25', glow: 'shadow-[0_0_8px_rgba(16,185,129,0.4)]' },
-    cyan: { rgb: '6, 182, 212', border: 'border-cyan-500', bg: 'bg-cyan-500/25', glow: 'shadow-[0_0_8px_rgba(6,182,212,0.4)]' },
-    magenta: { rgb: '217, 70, 239', border: 'border-fuchsia-500', bg: 'bg-fuchsia-500/25', glow: 'shadow-[0_0_8px_rgba(217,70,239,0.4)]' }
+    amber: { rgb: '37, 99, 235', border: 'border-blue-600', bg: 'bg-blue-600/25', glow: 'shadow-[0_0_8px_rgba(37,99,235,0.4)]' },
+    green: { rgb: '5, 150, 105', border: 'border-emerald-600', bg: 'bg-emerald-600/25', glow: 'shadow-[0_0_8px_rgba(5,150,105,0.4)]' },
+    cyan: { rgb: '8, 145, 178', border: 'border-cyan-600', bg: 'bg-cyan-600/25', glow: 'shadow-[0_0_8px_rgba(8,145,178,0.4)]' },
+    magenta: { rgb: '192, 38, 211', border: 'border-fuchsia-600', bg: 'bg-fuchsia-600/25', glow: 'shadow-[0_0_8px_rgba(192,38,211,0.4)]' }
   };
 
   btns.forEach(btn => {
@@ -515,10 +538,8 @@ function initThemeSwitcher() {
         otherBtn.className = `w-8 h-8 rounded-full border-2 focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn ${config.border}`;
         
         if (otherId === themeId) {
-          // Add active states
           otherBtn.className += ` ${config.bg} ${config.glow}`;
         } else {
-          // Add inactive states
           otherBtn.className += ` bg-transparent opacity-60`;
         }
       });
