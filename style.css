@@ -1,6 +1,6 @@
 /*
- * Custom Retro-Modern Stylesheet
- * Integrates with Tailwind CSS and provides the 90s analog grain vibe, monospace typography, and custom UI components.
+ * Cyberpunk HUD & Retro-Modern Stylesheet
+ * Integrates with Tailwind CSS to construct glassmorphic panels, glowing terminal logs, and system metrics.
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -10,19 +10,18 @@
   --font-display: 'Syne', sans-serif;
   --font-sans: 'Inter', sans-serif;
   
-  --bg-color: #080808;
-  --card-bg: #121212;
-  --card-border: #1a1a1a;
-  --card-border-hover: #333333;
-  --accent-amber: #f59e0b; /* 90s retro-terminal amber */
-  --accent-green: #10b981; /* 90s retro-terminal green */
-  --text-muted: #888888;
+  --bg-color: #050505;
+  --card-bg: rgba(15, 15, 15, 0.75);
+  --card-border: rgba(245, 158, 11, 0.15);
+  --accent-amber: #f59e0b;
+  --accent-green: #10b981;
+  --text-muted: #737373;
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-color);
-  color: #f3f4f6;
+  color: #e5e7eb;
   overflow-x: hidden;
 }
 
@@ -34,13 +33,13 @@ body {
   width: 100%;
   height: 100%;
   content: "";
-  opacity: 0.055;
+  opacity: 0.06;
   pointer-events: none;
   z-index: 9999;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Typography Overrides */
+/* Typography Custom Rules */
 .font-mono-custom {
   font-family: var(--font-mono) !important;
 }
@@ -49,7 +48,7 @@ body {
   font-family: var(--font-display) !important;
 }
 
-/* CRT Scanlines and Glow Effects */
+/* CRT Screen Glow and Flicker Effects */
 .crt-screen {
   position: relative;
   overflow: hidden;
@@ -60,49 +59,52 @@ body {
   display: block;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  z-index: 2;
-  background-size: 100% 4px, 6px 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
+  z-index: 5;
+  background-size: 100% 3px, 5px 100%;
   pointer-events: none;
 }
 
 .terminal-glow {
-  text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  text-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
 }
 
 .terminal-glow-green {
-  text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+  text-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar for HUD Panels */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #080808;
+  background: rgba(10, 10, 10, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #222222;
-  border-radius: 4px;
+  background: rgba(245, 158, 11, 0.2);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #333333;
+  background: rgba(245, 158, 11, 0.5);
 }
 
-/* 90s Retro Borders and Outlines */
-.retro-border {
+/* Glassmorphism Dashboard Cards */
+.hud-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
-  box-shadow: 3px 3px 0px rgba(245, 158, 11, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.retro-border:hover {
-  border-color: var(--accent-amber);
-  box-shadow: 5px 5px 0px rgba(245, 158, 11, 0.25);
-  transform: translate(-2px, -2px);
+.hud-panel:hover {
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
 }
 
 /* Active Navigation Dots */
@@ -131,7 +133,7 @@ body {
 /* Scroll Animation Classes */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(20px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
@@ -145,8 +147,6 @@ body {
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
 .delay-300 { transition-delay: 300ms; }
-.delay-400 { transition-delay: 400ms; }
-.delay-500 { transition-delay: 500ms; }
 
 /* Custom Badge Pulse */
 .pulse-dot {
@@ -175,24 +175,61 @@ body {
   }
 }
 
-/* Fashion-styled image frame with monospace layout */
-.fashion-image-container {
+/* Simulated Diagnostics console logs list */
+.console-logs-container {
+  max-height: 160px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.console-log-line {
+  margin-bottom: 4px;
+  border-left: 2px solid #333;
+  padding-left: 6px;
+}
+
+.console-log-line.info { border-color: #3b82f6; }
+.console-log-line.success { border-color: var(--accent-green); }
+.console-log-line.warning { border-color: var(--accent-amber); }
+
+/* Glitch Text styling */
+.glitch-text {
   position: relative;
 }
 
-.fashion-image-container::before {
-  content: "";
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: -12px;
-  bottom: -12px;
-  border: 1px solid var(--accent-amber);
-  z-index: 0;
-  pointer-events: none;
-  transition: transform 0.3s ease;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
 }
 
-.fashion-image-container:hover::before {
-  transform: translate(-6px, -6px);
+.glitch-text::before {
+  left: 1px;
+  text-shadow: -1px 0 #ff00c1;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -1px;
+  text-shadow: -1px 0 #00fff9, 0 1px #00fff9;
+  clip: rect(85px, 450px, 140px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(15px, 9999px, 66px, 0); }
+  100% { clip: rect(34px, 9999px, 55px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(70px, 9999px, 105px, 0); }
+  100% { clip: rect(12px, 9999px, 85px, 0); }
 }

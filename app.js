@@ -1,6 +1,6 @@
 /**
- * Core Behavior & Interactions Script
- * Portfolio website for Lohith BC
+ * Cyberpunk HUD & Retro-Modern Portfolio Controller Script
+ * Manages canvas visual systems, simulated loggers, metric fluctuations, and core portfolio behavior.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,232 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNavTracking();
   initPortfolioFilters();
   initLiveClock();
+  initProcessLogger();
+  initMetricBars();
   initContactForm();
 });
 
 /**
- * 1. Mobile Menu Toggler
- */
-function initMobileMenu() {
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const line1 = document.getElementById('line1');
-  const line2 = document.getElementById('line2');
-  const line3 = document.getElementById('line3');
-  const links = document.querySelectorAll('.mobile-nav-link');
-
-  if (!btn || !menu) return;
-
-  function toggleMenu() {
-    menu.classList.toggle('hidden');
-    // Animate burger menu lines into an 'X'
-    line1.classList.toggle('rotate-45');
-    line1.classList.toggle('translate-y-[6px]');
-    line2.classList.toggle('opacity-0');
-    line3.classList.toggle('-rotate-45');
-    line3.classList.toggle('-translate-y-[6px]');
-  }
-
-  btn.addEventListener('click', toggleMenu);
-
-  // Close menu when links are clicked
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      if (!menu.classList.contains('hidden')) {
-        toggleMenu();
-      }
-    });
-  });
-}
-
-/**
- * 2. Scroll Reveal Animations (using Intersection Observer)
- */
-function initScrollAnimations() {
-  const elements = document.querySelectorAll('.reveal-on-scroll');
-  
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          // Once it has animated in, we can stop observing it
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
-    });
-
-    elements.forEach(el => observer.observe(el));
-  } else {
-    // Fallback for older browsers
-    elements.forEach(el => el.classList.add('revealed'));
-  }
-}
-
-/**
- * 3. Active Nav Link Tracking on Scroll
- */
-function initActiveNavTracking() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  if (!sections.length || !navLinks.length) return;
-
-  function trackingActiveSection() {
-    let scrollY = window.pageYOffset;
-
-    sections.forEach(current => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 120; // offset header height
-      const sectionId = current.getAttribute('id');
-
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navLinks.forEach(link => {
-          link.classList.remove('active-nav');
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active-nav');
-          }
-        });
-      }
-    });
-  }
-
-  window.addEventListener('scroll', trackingActiveSection);
-  // Run once initially
-  trackingActiveSection();
-}
-
-/**
- * 4. Portfolio Grid Filters
- */
-function initPortfolioFilters() {
-  const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
-  const items = document.querySelectorAll('.portfolio-item');
-
-  if (!filterBtns.length || !items.length) return;
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Remove active design classes from all buttons
-      filterBtns.forEach(b => {
-        b.classList.remove('border-retroAmber', 'text-retroAmber', 'bg-retroAmber/10');
-        b.classList.add('border-retroBorder', 'text-gray-400');
-      });
-
-      // Add active design classes to clicked button
-      btn.classList.remove('border-retroBorder', 'text-gray-400');
-      btn.classList.add('border-retroAmber', 'text-retroAmber', 'bg-retroAmber/10');
-
-      const filterValue = btn.getAttribute('data-filter');
-
-      items.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
-
-        if (filterValue === 'all' || itemCategory === filterValue) {
-          // Show with layout animation
-          item.style.display = 'block';
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'scale(1)';
-          }, 50);
-        } else {
-          // Hide with smooth fade out
-          item.style.opacity = '0';
-          item.style.transform = 'scale(0.95)';
-          setTimeout(() => {
-            item.style.display = 'none';
-          }, 300);
-        }
-      });
-    });
-  });
-}
-
-/**
- * 5. Live Retro Terminal Clock
- */
-function initLiveClock() {
-  const clockEl = document.getElementById('live-clock');
-  const yearEl = document.getElementById('current-year');
-
-  // Set current year
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-
-  if (!clockEl) return;
-
-  function updateClock() {
-    const now = new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    let seconds = now.getSeconds();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-
-    hours = hours % 12;
-    hours = hours ? hours : 12; // hour '0' should be '12'
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-
-    clockEl.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-  }
-
-  // Update clock every second
-  setInterval(updateClock, 1000);
-  updateClock(); // run initially
-}
-
-/**
- * 6. Contact Form Submission Sim
- */
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  const statusEl = document.getElementById('form-status');
-
-  if (!form || !statusEl) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // Show transmitting status
-    statusEl.textContent = '[ STATUS: TRANSMITTING_MESSAGE... ]';
-    statusEl.classList.remove('text-red-500', 'text-retroGreen');
-    statusEl.classList.add('text-retroAmber');
-    statusEl.style.opacity = '1';
-
-    // Simulate server transmission delay
-    setTimeout(() => {
-      // Validate inputs loosely
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-
-      if (name && email) {
-        statusEl.textContent = '[ STATUS: MESSAGE_DELIVERED_SUCCESSFULLY ]';
-        statusEl.classList.remove('text-retroAmber');
-        statusEl.classList.add('text-retroGreen');
-        
-        // Reset form inputs
-        form.reset();
-      } else {
-        statusEl.textContent = '[ STATUS: TRANSMISSION_FAILED. RE-VERIFY EMAIL. ]';
-        statusEl.classList.remove('text-retroAmber');
-        statusEl.classList.add('text-red-500');
-      }
-
-      // Fade out status after 5 seconds
-      setTimeout(() => {
-        statusEl.style.opacity = '0';
-      }, 5000);
-
-    }, 1500);
-  });
-}
-
-/**
- * 7. Interactive Canvas Plexus Background
+ * 1. Interactive Dual-Layer Canvas Background (3D Perspective Grid + Node Plexus)
  */
 function initCanvasBackground() {
   const canvas = document.getElementById('bg-canvas');
@@ -243,11 +24,14 @@ function initCanvasBackground() {
 
   const ctx = canvas.getContext('2d');
   let particles = [];
-  const particleCount = 85;
+  const particleCount = 75;
   const connectionDistance = 110;
-  const mouse = { x: null, y: null, radius: 150 };
+  const mouse = { x: null, y: null, radius: 160 };
 
-  // Set canvas size
+  // Grid animation configuration
+  let gridOffset = 0;
+  const gridSpeed = 0.35; // Speed of forward grid motion
+
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -266,25 +50,27 @@ function initCanvasBackground() {
     mouse.y = null;
   });
 
-  // Particle constructor
+  // Particle Node Blueprint
   class Particle {
     constructor() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.45;
-      this.vy = (Math.random() - 0.5) * 0.45;
-      this.radius = Math.random() * 2 + 1;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
+      this.radius = Math.random() * 2 + 0.8;
     }
 
     update() {
       this.x += this.vx;
       this.y += this.vy;
 
-      // Bounce off boundaries
-      if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-      if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+      // Wrap boundaries instead of simple bounce for seamless space
+      if (this.x < 0) this.x = canvas.width;
+      if (this.x > canvas.width) this.x = 0;
+      if (this.y < 0) this.y = canvas.height;
+      if (this.y > canvas.height) this.y = 0;
 
-      // Mouse attraction
+      // Mouse interactive pull
       if (mouse.x !== null && mouse.y !== null) {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
@@ -293,9 +79,8 @@ function initCanvasBackground() {
         if (distance < mouse.radius) {
           const force = (mouse.radius - distance) / mouse.radius;
           const angle = Math.atan2(dy, dx);
-          // Pull gently towards mouse
-          this.x += Math.cos(angle) * force * 0.4;
-          this.y += Math.sin(angle) * force * 0.4;
+          this.x += Math.cos(angle) * force * 0.35;
+          this.y += Math.sin(angle) * force * 0.35;
         }
       }
     }
@@ -303,27 +88,81 @@ function initCanvasBackground() {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(245, 158, 11, 0.45)'; // Amber particles
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.4)'; // Amber glow nodes
       ctx.fill();
     }
   }
 
-  // Initialize particles
+  // Generate particles
   for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle());
   }
 
-  // Animation loop
+  // Draw 3D Retro Synthwave Grid
+  function drawPerspectiveGrid() {
+    const horizon = canvas.height * 0.45; // Horizon height
+    const gridYStart = horizon + 20;
+    const gridHeight = canvas.height - gridYStart;
+    
+    ctx.strokeStyle = 'rgba(245, 158, 11, 0.04)'; // Extremely faint amber grid
+    ctx.lineWidth = 1;
+
+    // Draw vanishing perspective lines radiating from top-center horizon
+    const centerX = canvas.width / 2;
+    const lineCount = 36;
+    for (let i = 0; i <= lineCount; i++) {
+      const xPercent = (i / lineCount) * 2 - 1; // Range from -1 to 1
+      const startX = centerX + xPercent * 30; // Radiate from centered point
+      const endX = centerX + xPercent * (canvas.width * 1.5); // Spread outward at the bottom
+      
+      ctx.beginPath();
+      ctx.moveTo(startX, gridYStart);
+      ctx.lineTo(endX, canvas.height);
+      ctx.stroke();
+    }
+
+    // Draw horizontal grid lines sliding forward towards screen
+    gridOffset = (gridOffset + gridSpeed) % 40; // Loop spacing interval
+    
+    // Dynamic exponential spacing to simulate perspective depth
+    let currentY = 0;
+    let step = 1;
+    while (currentY < gridHeight) {
+      // Calculate depth spacing
+      const normalizedPos = currentY / gridHeight;
+      const offsetPos = ((currentY + gridOffset) / gridHeight);
+      
+      // Calculate drawing Y with perspective compression
+      const drawY = gridYStart + Math.pow(normalizedPos, 1.8) * gridHeight;
+      
+      if (drawY > gridYStart && drawY < canvas.height) {
+        // Fade lines near the horizon
+        const opacity = Math.min((drawY - gridYStart) / 100, 1) * 0.05;
+        ctx.strokeStyle = `rgba(245, 158, 11, ${opacity})`;
+        ctx.beginPath();
+        ctx.moveTo(0, drawY);
+        ctx.lineTo(canvas.width, drawY);
+        ctx.stroke();
+      }
+      
+      step *= 1.15;
+      currentY += step + 8;
+    }
+  }
+
+  // Animation Loop
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Update and draw particles
+    // Layer 1: Perspective Grid
+    drawPerspectiveGrid();
+
+    // Layer 2: Connecting Particle Plexus
     particles.forEach(p => {
       p.update();
       p.draw();
     });
 
-    // Draw connecting lines
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
@@ -331,12 +170,11 @@ function initCanvasBackground() {
         const dist = Math.hypot(dx, dy);
 
         if (dist < connectionDistance) {
-          // Calculate opacity based on distance
           const opacity = (1 - dist / connectionDistance) * 0.12;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(245, 158, 11, ${opacity})`; // Amber connection lines
+          ctx.strokeStyle = `rgba(245, 158, 11, ${opacity})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
@@ -347,4 +185,302 @@ function initCanvasBackground() {
   }
 
   animate();
+}
+
+/**
+ * 2. Mobile Menu Toggler
+ */
+function initMobileMenu() {
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const line1 = document.getElementById('line1');
+  const line2 = document.getElementById('line2');
+  const line3 = document.getElementById('line3');
+  const links = document.querySelectorAll('.mobile-nav-link');
+
+  if (!btn || !menu) return;
+
+  function toggleMenu() {
+    menu.classList.toggle('hidden');
+    line1.classList.toggle('rotate-45');
+    line1.classList.toggle('translate-y-[6px]');
+    line2.classList.toggle('opacity-0');
+    line3.classList.toggle('-rotate-45');
+    line3.classList.toggle('-translate-y-[6px]');
+  }
+
+  btn.addEventListener('click', toggleMenu);
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      if (!menu.classList.contains('hidden')) {
+        toggleMenu();
+      }
+    });
+  });
+}
+
+/**
+ * 3. Scroll Reveal Animations (Intersection Observer)
+ */
+function initScrollAnimations() {
+  const elements = document.querySelectorAll('.reveal-on-scroll');
+  if (elements.length === 0) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        // Stop observing once revealed
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  elements.forEach(el => observer.observe(el));
+}
+
+/**
+ * 4. Active Navigation Indicator Highlight
+ */
+function initActiveNavTracking() {
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (sections.length === 0 || navLinks.length === 0) return;
+
+  window.addEventListener('scroll', () => {
+    let currentId = '';
+    const scrollPosition = window.scrollY + 120; // Offset for sticky navbar
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollPosition >= top && scrollPosition < top + height) {
+        currentId = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active-nav');
+      if (link.getAttribute('href') === `#${currentId}`) {
+        link.classList.add('active-nav');
+      }
+    });
+  });
+}
+
+/**
+ * 5. Portfolio Grid Category Filtering
+ */
+function initPortfolioFilters() {
+  const filters = document.querySelectorAll('#portfolio-filters button');
+  const items = document.querySelectorAll('#portfolio-grid > div');
+
+  if (filters.length === 0 || items.length === 0) return;
+
+  filters.forEach(filterBtn => {
+    filterBtn.addEventListener('click', () => {
+      // Toggle active states on filter buttons
+      filters.forEach(btn => {
+        btn.classList.remove('border-retroAmber', 'bg-retroAmber/10', 'text-retroAmber');
+        btn.classList.add('border-retroBorder', 'bg-transparent', 'text-gray-400', 'hover:text-white', 'hover:border-gray-500');
+      });
+      filterBtn.classList.remove('border-retroBorder', 'bg-transparent', 'text-gray-400', 'hover:text-white', 'hover:border-gray-500');
+      filterBtn.classList.add('border-retroAmber', 'bg-retroAmber/10', 'text-retroAmber');
+
+      const filterValue = filterBtn.getAttribute('data-filter');
+
+      items.forEach(item => {
+        const itemCategory = item.getAttribute('data-category');
+        if (filterValue === 'all' || itemCategory === filterValue) {
+          item.style.display = 'flex';
+          // Trigger slight fade-in transition
+          item.style.opacity = '0';
+          setTimeout(() => {
+            item.style.opacity = '1';
+          }, 50);
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+/**
+ * 6. Clock and Uptime Trackers
+ */
+let uptimeSeconds = 0;
+function initLiveClock() {
+  const liveClockEl = document.getElementById('live-time');
+  const uptimeEl = document.getElementById('uptime-counter');
+
+  function updateTimes() {
+    // 1. Live Time in Bengaluru Timezone (IST)
+    const options = {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    if (liveClockEl) {
+      liveClockEl.textContent = formatter.format(new Date());
+    }
+
+    // 2. Uptime counter tracker
+    uptimeSeconds++;
+    const hrs = String(Math.floor(uptimeSeconds / 3600)).padStart(2, '0');
+    const mins = String(Math.floor((uptimeSeconds % 3600) / 60)).padStart(2, '0');
+    const secs = String(uptimeSeconds % 60).padStart(2, '0');
+    if (uptimeEl) {
+      uptimeEl.textContent = `${hrs}:${mins}:${secs}`;
+    }
+  }
+
+  setInterval(updateTimes, 1000);
+  updateTimes();
+}
+
+/**
+ * 7. Simulated Diagnostics Logger Window
+ */
+function initProcessLogger() {
+  const logContainer = document.getElementById('console-logs');
+  if (!logContainer) return;
+
+  const mockLogs = [
+    { type: 'info', msg: 'Syncing portal states with WordPress cores...' },
+    { type: 'success', msg: 'CRM connection established on port 443' },
+    { type: 'info', msg: 'Optimizing payload bundle modules: style.css' },
+    { type: 'success', msg: 'MySQL database response in 4.82ms' },
+    { type: 'warning', msg: 'HubSpot API buffer load: 74% - stabilizing' },
+    { type: 'info', msg: 'Validating DNS routes for dubai-fintech-summit' },
+    { type: 'success', msg: 'Handshake completed: secure WordPress SSL' },
+    { type: 'info', msg: 'Flushing server cache tables (0 obsolete entries)' },
+    { type: 'success', msg: 'Loaded 3D perspective background canvas grid' },
+    { type: 'info', msg: 'Mapping CRM tracking scripts to client input headers' },
+    { type: 'warning', msg: 'Concurrent checkout ping spikes: 842 sessions' },
+    { type: 'success', msg: 'System logs buffer flushed to console log' }
+  ];
+
+  let logIndex = 0;
+
+  function appendLog() {
+    const timestamp = new Date().toLocaleTimeString('en-US', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+
+    const logItem = mockLogs[logIndex];
+    const logLine = document.createElement('div');
+    logLine.className = `console-log-line ${logItem.type}`;
+    
+    let typeTag = '[INFO]';
+    if (logItem.type === 'success') typeTag = '[ OK ]';
+    if (logItem.type === 'warning') typeTag = '[WARN]';
+
+    logLine.innerHTML = `<span class="text-gray-500">${timestamp}</span> <span class="font-bold">${typeTag}</span> ${logItem.msg}`;
+    logContainer.appendChild(logLine);
+
+    // Keep scroll aligned at bottom
+    logContainer.scrollTop = logContainer.scrollHeight;
+
+    // Cycle through mock items
+    logIndex = (logIndex + 1) % mockLogs.length;
+
+    // Bounded log length to prevent DOM memory leaks
+    if (logContainer.children.length > 50) {
+      logContainer.removeChild(logContainer.firstChild);
+    }
+
+    // Schedule next log entry with slightly variable interval pings
+    const nextInterval = Math.random() * 2000 + 1200;
+    setTimeout(appendLog, nextInterval);
+  }
+
+  // Start logger cycle
+  appendLog();
+}
+
+/**
+ * 8. Simulated Sidebar Load Metric Indicators
+ */
+function initMetricBars() {
+  const wpPct = document.getElementById('wp-load-pct');
+  const wpBar = document.getElementById('wp-load-bar');
+  const dbPct = document.getElementById('db-load-pct');
+  const dbBar = document.getElementById('db-load-bar');
+  const apiPct = document.getElementById('api-load-pct');
+  const apiBar = document.getElementById('api-load-bar');
+
+  function fluctuateMetrics() {
+    // Generate slight fluctuations around baselines
+    // WP baseline: 18%, DB baseline: 42%, API baseline: 29%
+    const newWp = Math.max(10, Math.min(30, Math.floor(18 + (Math.random() - 0.5) * 8)));
+    const newDb = Math.max(30, Math.min(60, Math.floor(42 + (Math.random() - 0.5) * 12)));
+    const newApi = Math.max(15, Math.min(45, Math.floor(29 + (Math.random() - 0.5) * 10)));
+
+    if (wpPct && wpBar) {
+      wpPct.textContent = `${newWp}%`;
+      wpBar.style.width = `${newWp}%`;
+    }
+    if (dbPct && dbBar) {
+      dbPct.textContent = `${newDb}%`;
+      dbBar.style.width = `${newDb}%`;
+    }
+    if (apiPct && apiBar) {
+      apiPct.textContent = `${newApi}%`;
+      apiBar.style.width = `${newApi}%`;
+    }
+  }
+
+  setInterval(fluctuateMetrics, 2800);
+}
+
+/**
+ * 9. Contact Form Transmission Logic
+ */
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  const statusLog = document.getElementById('form-status-log');
+
+  if (!form || !statusLog) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    statusLog.textContent = '[ STATUS: PREPARING_TRANSMISSION_PACKET... ]';
+    statusLog.classList.remove('text-red-500', 'text-retroGreen');
+    statusLog.classList.add('text-retroAmber');
+
+    // Simulate connection ping delays
+    setTimeout(() => {
+      statusLog.textContent = '[ STATUS: SHIFTING_PORTS_AND_COMPRESSING... ]';
+      
+      setTimeout(() => {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+
+        if (name && email) {
+          statusLog.textContent = '[ STATUS: PACKET_TRANSMITTED_SUCCESSFULLY ]';
+          statusLog.classList.remove('text-retroAmber');
+          statusLog.classList.add('text-retroGreen');
+          form.reset();
+        } else {
+          statusLog.textContent = '[ STATUS: ERROR_PACKET_DROPPED_EMPTY_FIELDS ]';
+          statusLog.classList.remove('text-retroAmber');
+          statusLog.classList.add('text-red-500');
+        }
+      }, 1500);
+
+    }, 1200);
+  });
 }

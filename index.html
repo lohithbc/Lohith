@@ -4,21 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lohith BC | Senior Web Developer & Digital Solutions Architect</title>
-  <meta name="description" content="Portfolio of Lohith BC, a Senior Web Developer specializing in WordPress, PHP, HTML/CSS, and high-performance digital solutions. Experience at Trescon Global and the Dubai FinTech Summit.">
+  <meta name="description" content="Portfolio of Lohith BC, Senior Web Developer specializing in custom WordPress theme development, PHP orchestration, and high-performance digital architectures.">
   
-  <!-- Tailwind CSS v3 via CDN -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Custom Tailwind Configuration -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            retroBg: '#080808',
-            retroCard: '#121212',
-            retroBorder: '#1c1c1c',
-            retroBorderHover: '#333333',
+            retroBg: '#050505',
+            retroCard: 'rgba(15, 15, 15, 0.75)',
+            retroBorder: 'rgba(245, 158, 11, 0.15)',
             retroAmber: '#f59e0b',
             retroGreen: '#10b981',
           },
@@ -37,37 +34,34 @@
 </head>
 <body class="bg-retroBg text-gray-200 antialiased relative">
 
-  <!-- Interactive Canvas Background -->
+  <!-- Interactive Dual-Layer Canvas Background -->
   <canvas id="bg-canvas" class="fixed inset-0 w-full h-full -z-10 pointer-events-none"></canvas>
 
   <!-- Subtle Film Grain Overlay -->
   <div class="grain-overlay"></div>
 
-  <!-- WORDPRESS TEMPLATE SPLIT: header.php START -->
-  
   <!-- Header / Navigation -->
   <header class="fixed top-0 left-0 w-full z-50 bg-[#080808]/85 backdrop-blur-md border-b border-retroBorder">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <!-- Logo / Brand -->
-      <a href="#" class="font-mono text-lg tracking-wider text-white hover:text-retroAmber transition-colors flex items-center gap-2">
+      <a href="#" class="font-mono text-base tracking-wider text-white hover:text-retroAmber transition-colors flex items-center gap-2">
         <span class="text-retroAmber font-bold">&lt;</span>
-        LOHITH.DEV
-        <span class="text-retroAmber font-bold">/&gt;</span>
+        <span>LBC // DEPLOYMENT_ACTIVE</span>
+        <span class="text-retroAmber font-bold">&gt;</span>
       </a>
 
-      <!-- Desktop Navigation -->
-      <!-- WORDPRESS DYNAMIC NAV: wp_nav_menu() PLACEHOLDER -->
-      <nav class="hidden md:flex items-center gap-8 font-mono text-xs tracking-widest text-gray-400">
-        <a href="#hero" class="nav-link hover:text-white uppercase transition-colors">Home</a>
-        <a href="#about" class="nav-link hover:text-white uppercase transition-colors">About</a>
-        <a href="#experience" class="nav-link hover:text-white uppercase transition-colors">Experience</a>
-        <a href="#portfolio" class="nav-link hover:text-white uppercase transition-colors">Work</a>
-        <a href="#skills" class="nav-link hover:text-white uppercase transition-colors">Skills</a>
-        <a href="#contact" class="nav-link hover:text-white uppercase transition-colors">Contact</a>
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8 font-mono text-[11px] tracking-widest">
+        <a href="#hero" class="nav-link text-gray-400 hover:text-white transition-colors">HOME</a>
+        <a href="#about" class="nav-link text-gray-400 hover:text-white transition-colors">ABOUT</a>
+        <a href="#experience" class="nav-link text-gray-400 hover:text-white transition-colors">EXPERIENCE</a>
+        <a href="#portfolio" class="nav-link text-gray-400 hover:text-white transition-colors">WORK</a>
+        <a href="#skills" class="nav-link text-gray-400 hover:text-white transition-colors">SKILLS</a>
+        <a href="#contact" class="nav-link text-gray-400 hover:text-white transition-colors">CONTACT</a>
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-between w-6 h-4 text-white focus:outline-none" aria-label="Toggle Menu">
+      <!-- Mobile Menu Toggle Button -->
+      <button class="md:hidden flex flex-col gap-1.5 focus:outline-none z-50 w-6 h-6 justify-center" id="mobile-menu-btn" aria-label="Toggle Menu">
         <span class="w-full h-[2px] bg-white transition-all duration-300 origin-left" id="line1"></span>
         <span class="w-full h-[2px] bg-white transition-all duration-300" id="line2"></span>
         <span class="w-full h-[2px] bg-white transition-all duration-300 origin-left" id="line3"></span>
@@ -85,647 +79,457 @@
     </div>
   </header>
 
-  <!-- WORDPRESS TEMPLATE SPLIT: header.php END -->
-
-  <!-- Hero Section -->
-  <section id="hero" class="min-h-screen pt-32 pb-16 flex items-center justify-center max-w-5xl mx-auto px-6 relative">
-    <!-- Top-right absolute metadata for 90s retro look -->
-    <div class="absolute top-36 right-6 hidden lg:block text-right font-mono text-[10px] text-gray-500 tracking-widest uppercase leading-relaxed">
-      <div>SYS.STATUS: <span class="text-retroGreen font-bold animate-pulse">ONLINE</span></div>
-      <div>LOC: BENGALURU, IN</div>
-      <div>ENV: PHP_DEV_MODE_8.2</div>
-    </div>
-
-    <!-- Centered Hero Layout -->
-    <div class="flex flex-col items-center text-center max-w-3xl w-full z-10">
-      <!-- Monospace Tagline Badge -->
-      <div class="flex items-center gap-2 mb-6 font-mono text-xs text-retroAmber tracking-widest uppercase justify-center">
-        <span class="inline-block w-2 h-2 rounded-full bg-retroAmber pulse-dot"></span>
-        <span>[ WEB SOLUTIONS ARCHITECT ]</span>
-      </div>
-
-      <!-- Monospace Retro Header -->
-      <h1 class="font-display-custom font-extrabold text-4xl sm:text-5xl xl:text-6xl tracking-tight text-white mb-6 uppercase leading-[1.15]">
-        Crafting Digital <br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-retroAmber to-yellow-500 font-mono-custom text-3xl sm:text-4xl xl:text-5xl inline-block mt-2">
-          &lt;Solutions /&gt;
-        </span> <br class="sm:hidden">
-        with Retro Precision.
-      </h1>
-
-      <!-- Subheading with terminal vibes (centered box) -->
-      <div class="w-full max-w-2xl mb-8 crt-screen p-6 border border-retroBorder bg-black/60 rounded text-left">
-        <p class="font-mono text-sm leading-relaxed text-gray-400">
-          <span class="text-retroGreen font-bold">lohith@bc:~$</span> cat about.md<br>
-          <span class="text-gray-300">Expert web developer specializing in high-performance WordPress themes, robust PHP integration, clean HTML/CSS design, and complex digital orchestration. Ex-Trescon Global developer.</span>
-          <span class="animate-pulse bg-retroAmber inline-block w-[6px] h-4 ml-1"></span>
-        </p>
-      </div>
-
-      <!-- Action CTAs -->
-      <div class="flex flex-col sm:flex-row gap-4 font-mono text-xs uppercase tracking-widest justify-center w-full sm:w-auto">
-        <a href="#portfolio" class="px-8 py-4 bg-retroAmber hover:bg-yellow-600 text-black font-bold transition-all text-center rounded border border-retroAmber hover:border-yellow-600 shadow-[0_0_15px_rgba(245,158,11,0.25)] hover:shadow-[0_0_20px_rgba(245,158,11,0.45)]">
-          Explore Portfolio
-        </a>
-        <a href="#contact" class="px-8 py-4 bg-transparent hover:bg-white/5 text-gray-300 hover:text-white font-bold transition-all text-center rounded border border-retroBorder hover:border-gray-500">
-          Get In Touch
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Me Section -->
-  <section id="about" class="py-24 border-t border-retroBorder bg-black/30">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        
-        <!-- Left Side Header (Fixed labels in 90s style) -->
-        <div class="lg:col-span-4 flex flex-col justify-start">
-          <span class="font-mono text-xs text-retroAmber uppercase tracking-widest mb-2">[ 02 // PROFILE ]</span>
-          <h2 class="font-display-custom font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
-            About Me
-          </h2>
-          <div class="w-12 h-1 bg-retroAmber mt-4"></div>
-        </div>
-
-        <!-- Right Side: Content Bio -->
-        <div class="lg:col-span-8 space-y-6 text-gray-300 leading-relaxed font-sans text-base">
-          <p class="font-display-custom text-xl text-white font-medium">
-            I build robust, functional, and aesthetically-pleasing digital solutions bridging high-end web design and efficient backend integration.
-          </p>
-          <p>
-            With years of specialized experience in frontend development, WordPress custom architecture, and PHP scripting, I design workflows that load fast, scale gracefully, and look premium. I focus on creating clean markup and modular code templates, ensuring that everything I build is ready for dynamic CMS deployment.
-          </p>
-          <p>
-            Whether it is creating customized corporate platforms, setting up complex e-commerce templates, or managing large-scale enterprise event systems, I bring a methodical approach that respects standard development principles while executing with cutting-edge visual flair.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience & Events Section (Dubai FinTech Focus) -->
-  <section id="experience" class="py-24 border-t border-retroBorder max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <!-- Left side section title -->
-      <div class="lg:col-span-4 flex flex-col justify-start">
-        <span class="font-mono text-xs text-retroAmber uppercase tracking-widest mb-2">[ 03 // CORPORATE ]</span>
-        <h2 class="font-display-custom font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
-          Experience
-        </h2>
-        <div class="w-12 h-1 bg-retroAmber mt-4"></div>
-      </div>
-
-      <!-- Right side Timeline & Event focus -->
-      <div class="lg:col-span-8 space-y-12">
-        
-        <!-- Corporate Role -->
-        <div class="reveal-on-scroll relative pl-8 border-l border-retroBorder">
-          <div class="absolute -left-[6px] top-1.5 w-3 h-3 rounded-full bg-retroAmber"></div>
-          <div class="flex flex-col sm:flex-row justify-between mb-3">
-            <div>
-              <h3 class="text-xl font-bold text-white font-display-custom">Web Developer & Digital Solutions Specialist</h3>
-              <p class="text-retroAmber font-mono text-sm uppercase mt-1">Trescon Global Business Solutions</p>
-            </div>
-            <div class="text-gray-500 font-mono text-xs mt-2 sm:mt-0 uppercase">[ 2022 - PRESENT ]</div>
-          </div>
-          <p class="text-gray-400 text-sm leading-relaxed mb-4">
-            Led the design, layout, and implementation of high-performance web applications and landing systems. Maintained code quality, responsiveness, and speed across multi-region enterprise sites. Engineered responsive custom themes and managed dynamic PHP scripts for event registrations.
-          </p>
-        </div>
-
-        <!-- Special Event Spotlight - Dubai FinTech Summit -->
-        <div class="reveal-on-scroll border border-retroBorder p-6 md:p-8 bg-retroCard relative rounded overflow-hidden group">
-          <!-- Subtle watermark style display -->
-          <div class="absolute top-2 right-2 text-retroAmber/5 font-mono text-7xl font-bold select-none pointer-events-none uppercase">
-            DFS
-          </div>
-          
-          <div class="flex items-center gap-2 mb-4 font-mono text-xs text-retroGreen uppercase tracking-widest">
-            <span class="inline-block w-2.5 h-2.5 bg-retroGreen rounded-full pulse-dot"></span>
-            <span>[ EVENT DIGITAL ASSETS MASTERCLASS ]</span>
-          </div>
-
-          <h3 class="text-2xl font-bold text-white font-display-custom mb-3 group-hover:text-retroAmber transition-colors">
-            Dubai FinTech Summit
-          </h3>
-          
-          <p class="text-gray-300 text-sm leading-relaxed mb-6">
-            Engineered, deployed, and managed the dynamic digital pipeline for the global Dubai FinTech Summit. Handled complex digital assets, integrated custom registration forms, managed real-time attendee dashboards, and coordinated server architecture to handle thousands of concurrent global users under high-traffic conditions.
-          </p>
-
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 font-mono text-[10px] text-gray-400">
-            <div class="border border-retroBorder/50 p-3 bg-black/40">
-              <span class="text-retroAmber block mb-1">CAPACITY</span>
-              <span>10K+ Registrations</span>
-            </div>
-            <div class="border border-retroBorder/50 p-3 bg-black/40">
-              <span class="text-retroAmber block mb-1">INTEGRATION</span>
-              <span>REST APIs & Webhooks</span>
-            </div>
-            <div class="border border-retroBorder/50 p-3 bg-black/40 col-span-2 md:col-span-1">
-              <span class="text-retroAmber block mb-1">COMPLIANCE</span>
-              <span>GDPR / High Security</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio / Projects Grid -->
-  <section id="portfolio" class="py-24 border-t border-retroBorder bg-black/30">
-    <div class="max-w-7xl mx-auto px-6">
+  <!-- Main HUD Dashboard Layout Grid -->
+  <main class="pt-28 pb-16 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+    
+    <!-- LEFT PANEL: HUD Sidebar System Diagnostics (4 cols on desktop) -->
+    <aside class="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-28 lg:h-[calc(100vh-140px)] overflow-y-auto pr-0 lg:pr-2">
       
-      <!-- Header with Filter Controls -->
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
-        <div>
-          <span class="font-mono text-xs text-retroAmber uppercase tracking-widest mb-2">[ 04 // REPOSITORY ]</span>
-          <h2 class="font-display-custom font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
-            Portfolio Grid
-          </h2>
-          <div class="w-12 h-1 bg-retroAmber mt-4"></div>
+      <!-- Widget 1: System Health / Uptime -->
+      <div class="hud-panel p-5 rounded">
+        <div class="flex items-center justify-between border-b border-retroBorder/50 pb-3 mb-4 font-mono text-xs uppercase tracking-wider">
+          <span class="text-retroAmber font-bold">[ SYSTEM_DIAGNOSTICS ]</span>
+          <span class="text-retroGreen font-bold animate-pulse">● LIVE</span>
         </div>
-
-        <!-- Filter Buttons (Monospace layout) -->
-        <div class="flex flex-wrap gap-3 font-mono text-[10px] uppercase tracking-widest">
-          <button class="portfolio-filter-btn px-4 py-2 border border-retroAmber text-retroAmber bg-retroAmber/10 rounded transition-all" data-filter="all">ALL</button>
-          <button class="portfolio-filter-btn px-4 py-2 border border-retroBorder text-gray-400 hover:border-retroAmber hover:text-white rounded transition-all" data-filter="wordpress">WORDPRESS</button>
-          <button class="portfolio-filter-btn px-4 py-2 border border-retroBorder text-gray-400 hover:border-retroAmber hover:text-white rounded transition-all" data-filter="php">PHP/CUSTOM</button>
-          <button class="portfolio-filter-btn px-4 py-2 border border-retroBorder text-gray-400 hover:border-retroAmber hover:text-white rounded transition-all" data-filter="digital">DIGITAL SOLUTIONS</button>
+        <div class="font-mono text-xs text-gray-400 flex flex-col gap-2">
+          <div class="flex justify-between">
+            <span>SYS_VERSION:</span>
+            <span class="text-white">LBC_OS_v3.4.1</span>
+          </div>
+          <div class="flex justify-between">
+            <span>UPTIME:</span>
+            <span class="text-white font-bold" id="uptime-counter">00:00:00</span>
+          </div>
+          <div class="flex justify-between">
+            <span>ENVIRONMENT:</span>
+            <span class="text-retroAmber">PHP 8.2 // WP 6.x</span>
+          </div>
+          <div class="flex justify-between">
+            <span>LOC:</span>
+            <span class="text-white">BENGALURU, IN</span>
+          </div>
         </div>
       </div>
 
-      <!-- WORDPRESS LOOP IMPLEMENTATION NOTES:
-           If integrating in WordPress, create a Custom Post Type 'portfolio_project' 
-           and query posts here using WP_Query loop. -->
+      <!-- Widget 2: Live Diagnostic Log Terminal -->
+      <div class="hud-panel p-5 rounded flex-grow flex flex-col min-h-[220px]">
+        <div class="flex items-center justify-between border-b border-retroBorder/50 pb-3 mb-3 font-mono text-xs uppercase tracking-wider">
+          <span class="text-retroAmber font-bold">[ PROCESS_LOGGER ]</span>
+          <span class="text-gray-500 font-bold" id="log-speed-indicator">120ms</span>
+        </div>
+        <div class="console-logs-container flex-grow crt-screen p-3 bg-black/60 border border-retroBorder/50 rounded" id="console-logs">
+          <!-- Autoscrolling system process logs will print here -->
+        </div>
+      </div>
 
-      <!-- Projects Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Widget 3: Core Resources Metric Bars -->
+      <div class="hud-panel p-5 rounded">
+        <div class="flex items-center justify-between border-b border-retroBorder/50 pb-3 mb-4 font-mono text-xs uppercase tracking-wider">
+          <span class="text-retroAmber font-bold">[ PIPELINE_LOAD ]</span>
+          <span class="text-retroGreen font-bold">OPTIMAL</span>
+        </div>
+        <div class="flex flex-col gap-3.5 font-mono text-[10px] tracking-wider text-gray-400">
+          <div>
+            <div class="flex justify-between mb-1.5 uppercase">
+              <span>WordPress Core Overhead</span>
+              <span class="text-retroGreen font-bold" id="wp-load-pct">18%</span>
+            </div>
+            <div class="w-full h-2 bg-black/50 border border-retroBorder/50 rounded overflow-hidden p-[1px]">
+              <div class="h-full bg-retroGreen transition-all duration-500" style="width: 18%" id="wp-load-bar"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5 uppercase">
+              <span>Database Handshake Latency</span>
+              <span class="text-retroAmber font-bold" id="db-load-pct">42%</span>
+            </div>
+            <div class="w-full h-2 bg-black/50 border border-retroBorder/50 rounded overflow-hidden p-[1px]">
+              <div class="h-full bg-retroAmber transition-all duration-500" style="width: 42%" id="db-load-bar"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1.5 uppercase">
+              <span>HubSpot API Sync Overhead</span>
+              <span class="text-white font-bold" id="api-load-pct">29%</span>
+            </div>
+            <div class="w-full h-2 bg-black/50 border border-retroBorder/50 rounded overflow-hidden p-[1px]">
+              <div class="h-full bg-white transition-all duration-500" style="width: 29%" id="api-load-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- RIGHT PANEL: Main Content Stream (8 cols on desktop) -->
+    <div class="lg:col-span-8 flex flex-col gap-16">
+
+      <!-- Section 1: Hero -->
+      <section id="hero" class="hud-panel p-8 sm:p-12 rounded min-h-[60vh] flex flex-col justify-center relative overflow-hidden">
+        <!-- Overlay HUD coordinates -->
+        <div class="absolute top-4 right-4 hidden sm:block font-mono text-[8px] text-gray-600 tracking-widest">
+          LAT: 12.9716° N // LON: 77.5946° E
+        </div>
         
-        <!-- Project 1: WordPress Custom Portal -->
-        <!-- WORDPRESS POST ITEM QUERY START -->
-        <div class="portfolio-item show reveal-on-scroll border border-retroBorder bg-retroCard rounded overflow-hidden hover:border-retroAmber/50 transition-all duration-300 group" data-category="wordpress">
-          <div class="aspect-video relative overflow-hidden bg-gradient-to-br from-indigo-950/40 to-slate-900 border-b border-retroBorder flex items-center justify-center p-6">
-            <!-- Mock wireframe representing dashboard -->
-            <div class="w-full h-full border border-retroBorder/50 rounded p-3 font-mono text-[8px] text-gray-500 overflow-hidden relative crt-screen">
-              <div class="flex justify-between border-b border-retroBorder/30 pb-2 mb-2">
-                <span class="text-retroAmber font-bold">WP_DASHBOARD v4.2</span>
+        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-retroAmber tracking-widest uppercase">
+          <span class="inline-block w-2 h-2 rounded-full bg-retroAmber pulse-dot"></span>
+          <span>[ WEB SOLUTIONS ARCHITECT ]</span>
+        </div>
+
+        <h1 class="font-display-custom font-extrabold text-4xl sm:text-5xl xl:text-6xl tracking-tight text-white mb-6 uppercase leading-[1.1]">
+          Orchestrating <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-retroAmber to-yellow-500 font-mono-custom text-3xl sm:text-4xl xl:text-5xl block mt-2">
+            &lt;HighPerformance /&gt;
+          </span> 
+          Digital Solutions.
+        </h1>
+
+        <!-- Subheading terminal box -->
+        <div class="w-full max-w-2xl mb-8 crt-screen p-4 border border-retroBorder bg-black/40 rounded">
+          <p class="font-mono text-xs sm:text-sm leading-relaxed text-gray-400">
+            <span class="text-retroGreen font-bold">lohith@bc:~$</span> cat summary.txt<br>
+            <span class="text-gray-300">Web Developer specializing in clean PHP engineering, bespoke WordPress ecosystems, fast static frontends, and dynamic webhook sync integrations. Ex-Trescon Global developer.</span>
+            <span class="animate-pulse bg-retroAmber inline-block w-[6px] h-4 ml-1"></span>
+          </p>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 font-mono text-xs uppercase tracking-widest">
+          <a href="#portfolio" class="px-8 py-4 bg-retroAmber hover:bg-yellow-600 text-black font-bold transition-all text-center rounded border border-retroAmber hover:border-yellow-600 shadow-[0_0_15px_rgba(245,158,11,0.25)] hover:shadow-[0_0_20px_rgba(245,158,11,0.45)]">
+            Explore Portfolio
+          </a>
+          <a href="#contact" class="px-8 py-4 bg-transparent hover:bg-white/5 text-gray-300 hover:text-white font-bold transition-all text-center rounded border border-retroBorder hover:border-gray-500">
+            Get In Touch
+          </a>
+        </div>
+      </section>
+
+      <!-- Section 2: About Me -->
+      <section id="about" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
+        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-retroAmber uppercase tracking-widest">
+          <span>[ 01 // OVERVIEW ]</span>
+        </div>
+        
+        <h2 class="font-display-custom font-extrabold text-3xl text-white uppercase mb-6">
+          Profile Summary
+        </h2>
+        
+        <div class="text-gray-400 space-y-6 text-sm leading-relaxed">
+          <p>
+            I am a results-driven Web Developer with a strong focus on building resilient, responsive, and secure digital assets. Over the years, I have developed extensive experience bridging frontend aesthetics with complex backend workflows.
+          </p>
+          <p>
+            My specialties lie in optimizing <strong class="text-white font-semibold">WordPress architectures</strong>, writing scalable <strong class="text-white font-semibold">PHP scripts</strong>, integrating third-party APIs (HubSpot, payments, CRMs), and configuring custom digital tools. I focus on code maintainability, clean database structures, and high SEO performance.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 3: Professional Experience -->
+      <section id="experience" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
+        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-retroAmber uppercase tracking-widest">
+          <span>[ 02 // TIMELINE ]</span>
+        </div>
+
+        <h2 class="font-display-custom font-extrabold text-3xl text-white uppercase mb-8">
+          Work History
+        </h2>
+
+        <!-- Timeline Tree -->
+        <div class="relative border-l border-retroBorder/60 pl-6 ml-2 flex flex-col gap-10">
+          
+          <!-- Experience Card 1 -->
+          <div class="relative">
+            <!-- Bullet Point node -->
+            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-retroBg border border-retroAmber shadow-[0_0_8px_rgba(245,158,11,0.6)]"></span>
+            
+            <div class="flex flex-col sm:flex-row sm:justify-between items-start gap-1 mb-2 font-mono text-xs">
+              <span class="text-white font-bold uppercase text-sm">Trescon Global Business Solutions</span>
+              <span class="text-retroAmber">[ 2022 — PRESENT ]</span>
+            </div>
+            <div class="font-mono text-[10px] text-gray-500 uppercase tracking-wider mb-3">
+              Role: Web Developer & CRM Integrations Lead
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Engineered and maintained high-traffic web structures, customized WordPress theme frameworks, and developed custom PHP scripts to integrate multi-channel forms with marketing systems like HubSpot.
+            </p>
+            
+            <!-- Dubai FinTech Summit Highlight widget -->
+            <div class="crt-screen border border-retroBorder/50 bg-black/60 rounded p-4 font-mono text-xs">
+              <div class="flex justify-between border-b border-retroBorder/40 pb-2 mb-3 text-[10px] uppercase text-retroAmber tracking-wider font-bold">
+                <span>[ ORCHESTRATION: DUBAI_FINTECH_SUMMIT ]</span>
                 <span class="text-retroGreen">ACTIVE</span>
               </div>
-              <div class="space-y-1">
-                <div class="h-2 bg-retroBorder rounded w-3/4"></div>
-                <div class="h-2 bg-retroBorder rounded w-1/2"></div>
-                <div class="h-2 bg-retroBorder rounded w-5/6"></div>
-              </div>
-            </div>
-            <!-- Dynamic Overlay on Hover -->
-            <div class="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center p-6 transition-all duration-300">
-              <span class="font-mono text-xs text-retroAmber mb-2">[ WORDPRESS CUSTOM ]</span>
-              <p class="text-xs text-center text-gray-400">Custom multisite platform designed for corporate events, incorporating secure authentication and automated scheduling tools.</p>
+              <ul class="space-y-2 text-gray-400 text-[11px] leading-relaxed list-inside list-disc">
+                <li>Managed custom code stacks handling <strong class="text-white">10K+ concurrent registrations</strong>.</li>
+                <li>Built dynamic script APIs connecting client-side checkouts with central HubSpot pipelines.</li>
+                <li>Implemented advanced server caching and assets bundling, reducing page load lag by 40%.</li>
+              </ul>
             </div>
           </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-lg font-bold text-white group-hover:text-retroAmber transition-colors font-display-custom">Enterprise Event Platform</h3>
-              <span class="font-mono text-[9px] text-retroAmber border border-retroAmber/30 px-2 py-0.5 rounded">WP</span>
-            </div>
-            <p class="text-gray-400 text-xs mb-4 font-sans line-clamp-2">A high-performance WordPress platform hosting complex registration modules and customized theme hierarchies.</p>
-            <!-- Meta Stack Tags -->
-            <div class="flex flex-wrap gap-2 mb-4 font-mono text-[9px] text-gray-500">
-              <span>#WordPress</span>
-              <span>#PHP</span>
-              <span>#Tailwind</span>
-              <span>#JS</span>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[10px] uppercase">
-              <a href="#" class="text-retroAmber hover:underline flex items-center gap-1">Live View <span>&rarr;</span></a>
-              <!-- WP CUSTOM FIELD LINK: get_post_meta($post->ID, 'project_link', true) -->
-            </div>
-          </div>
-        </div>
-        <!-- WORDPRESS POST ITEM QUERY END -->
 
-        <!-- Project 2: Custom PHP API Registry -->
-        <div class="portfolio-item show reveal-on-scroll reveal-on-scroll delay-100 border border-retroBorder bg-retroCard rounded overflow-hidden hover:border-retroAmber/50 transition-all duration-300 group" data-category="php">
-          <div class="aspect-video relative overflow-hidden bg-gradient-to-br from-amber-950/20 to-slate-900 border-b border-retroBorder flex items-center justify-center p-6">
-            <!-- Mock wireframe representing code console -->
-            <div class="w-full h-full border border-retroBorder/50 rounded p-3 font-mono text-[8px] text-gray-500 overflow-hidden relative crt-screen">
-              <div class="text-retroGreen mb-1">&lt;?php</div>
-              <div class="pl-2">class RegistrationRouter {</div>
-              <div class="pl-4 text-gray-400">public function handlePost() {</div>
-              <div class="pl-6 text-retroAmber">$data = $_POST['user'];</div>
-              <div class="pl-6 text-gray-400">return $this->db->insert($data);</div>
-              <div class="pl-4">}</div>
-              <div class="pl-2">}</div>
-            </div>
-            <div class="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center p-6 transition-all duration-300">
-              <span class="font-mono text-xs text-retroAmber mb-2">[ PHP / REST API ]</span>
-              <p class="text-xs text-center text-gray-400">Custom CRM integration routing attendee registrations directly to Salesforce and HubSpot via lightweight endpoint routers.</p>
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-lg font-bold text-white group-hover:text-retroAmber transition-colors font-display-custom">Dynamic API Registry</h3>
-              <span class="font-mono text-[9px] text-retroGreen border border-retroGreen/30 px-2 py-0.5 rounded">PHP</span>
-            </div>
-            <p class="text-gray-400 text-xs mb-4 font-sans line-clamp-2">Lightweight PHP routing class for custom HubSpot integrations and robust form validation routines.</p>
-            <div class="flex flex-wrap gap-2 mb-4 font-mono text-[9px] text-gray-500">
-              <span>#PHP</span>
-              <span>#OOP</span>
-              <span>#Webhooks</span>
-              <span>#JSON</span>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[10px] uppercase">
-              <a href="#" class="text-retroAmber hover:underline flex items-center gap-1">Docs <span>&rarr;</span></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3: Dubai FinTech Summit Assets -->
-        <div class="portfolio-item show reveal-on-scroll reveal-on-scroll delay-200 border border-retroBorder bg-retroCard rounded overflow-hidden hover:border-retroAmber/50 transition-all duration-300 group" data-category="digital">
-          <div class="aspect-video relative overflow-hidden bg-gradient-to-br from-emerald-950/20 to-slate-900 border-b border-retroBorder flex items-center justify-center p-6">
-            <!-- Mock wireframe representing dynamic metrics map -->
-            <div class="w-full h-full border border-retroBorder/50 rounded p-3 font-mono text-[8px] text-gray-500 overflow-hidden relative crt-screen flex flex-col justify-between">
-              <div class="flex justify-between items-center">
-                <span class="text-white">DFS_DASHBOARD</span>
-                <span class="bg-retroGreen/20 text-retroGreen px-1 rounded">CDN LINKED</span>
-              </div>
-              <div class="h-8 border border-dashed border-retroBorder/80 rounded flex items-center justify-center text-[7px] text-gray-600">
-                [ VISITOR HEATMAP GRAPH ]
-              </div>
-              <div class="flex justify-between text-[6px] text-gray-400">
-                <span>USERS: 25k+</span>
-                <span>LATENCY: 42ms</span>
-              </div>
-            </div>
-            <div class="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center p-6 transition-all duration-300">
-              <span class="font-mono text-xs text-retroAmber mb-2">[ DIGITAL SOLUTION ]</span>
-              <p class="text-xs text-center text-gray-400">Full-scale digital assets hub deployed over Cloudflare CDN networks, handling 100,000+ media interactions during Dubai FinTech Summit.</p>
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-lg font-bold text-white group-hover:text-retroAmber transition-colors font-display-custom">Dubai FinTech Portal</h3>
-              <span class="font-mono text-[9px] text-retroAmber border border-retroAmber/30 px-2 py-0.5 rounded">Digital Assets</span>
-            </div>
-            <p class="text-gray-400 text-xs mb-4 font-sans line-clamp-2">Scalable asset portal with integrated CDN configuration to deliver media kits and real-time updates seamlessly.</p>
-            <div class="flex flex-wrap gap-2 mb-4 font-mono text-[9px] text-gray-500">
-              <span>#Cloudflare</span>
-              <span>#HTML5</span>
-              <span>#Analytics</span>
-              <span>#Assets</span>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[10px] uppercase">
-              <a href="#" class="text-retroAmber hover:underline flex items-center gap-1">Case Study <span>&rarr;</span></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 4: Custom WP WooCommerce Theme -->
-        <div class="portfolio-item show reveal-on-scroll border border-retroBorder bg-retroCard rounded overflow-hidden hover:border-retroAmber/50 transition-all duration-300 group" data-category="wordpress">
-          <div class="aspect-video relative overflow-hidden bg-gradient-to-br from-purple-950/20 to-slate-900 border-b border-retroBorder flex items-center justify-center p-6">
-            <!-- Mock wireframe representing grid list -->
-            <div class="w-full h-full border border-retroBorder/50 rounded p-3 font-mono text-[8px] text-gray-500 overflow-hidden relative crt-screen">
-              <div class="flex items-center gap-2 border-b border-retroBorder/30 pb-2 mb-2 justify-between">
-                <span>SHOP_TEMPLATE: ROOT</span>
-                <span class="text-retroAmber">$CART_02</span>
-              </div>
-              <div class="grid grid-cols-3 gap-2">
-                <div class="h-8 bg-retroBorder rounded flex flex-col justify-between p-1">
-                  <div class="h-1 bg-retroBorder/50 w-2/3"></div>
-                  <div class="h-2 bg-retroAmber/20"></div>
-                </div>
-                <div class="h-8 bg-retroBorder rounded flex flex-col justify-between p-1">
-                  <div class="h-1 bg-retroBorder/50 w-2/3"></div>
-                  <div class="h-2 bg-retroAmber/20"></div>
-                </div>
-                <div class="h-8 bg-retroBorder rounded flex flex-col justify-between p-1">
-                  <div class="h-1 bg-retroBorder/50 w-2/3"></div>
-                  <div class="h-2 bg-retroAmber/20"></div>
-                </div>
-              </div>
-            </div>
-            <div class="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center p-6 transition-all duration-300">
-              <span class="font-mono text-xs text-retroAmber mb-2">[ WOOCOMMERCE ]</span>
-              <p class="text-xs text-center text-gray-400">Custom theme integration featuring lightning-fast dynamic AJAX add-to-cart processes and fully customized checkout page styles.</p>
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-lg font-bold text-white group-hover:text-retroAmber transition-colors font-display-custom">WooCommerce Engine</h3>
-              <span class="font-mono text-[9px] text-retroAmber border border-retroAmber/30 px-2 py-0.5 rounded">WP</span>
-            </div>
-            <p class="text-gray-400 text-xs mb-4 font-sans line-clamp-2">Tailored theme files and custom filter options hook implementation for speed-optimized WooCommerce checkouts.</p>
-            <div class="flex flex-wrap gap-2 mb-4 font-mono text-[9px] text-gray-500">
-              <span>#WooCommerce</span>
-              <span>#PHP_Actions</span>
-              <span>#Vanilla_JS</span>
-              <span>#AJAX</span>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[10px] uppercase">
-              <a href="#" class="text-retroAmber hover:underline flex items-center gap-1">Live Demo <span>&rarr;</span></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 5: Interactive Event Landing System -->
-        <div class="portfolio-item show reveal-on-scroll reveal-on-scroll delay-100 border border-retroBorder bg-retroCard rounded overflow-hidden hover:border-retroAmber/50 transition-all duration-300 group" data-category="digital">
-          <div class="aspect-video relative overflow-hidden bg-gradient-to-br from-sky-950/20 to-slate-900 border-b border-retroBorder flex items-center justify-center p-6">
-            <!-- Mock wireframe representing interactive schedule -->
-            <div class="w-full h-full border border-retroBorder/50 rounded p-3 font-mono text-[8px] text-gray-500 overflow-hidden relative crt-screen flex flex-col justify-between">
-              <div class="flex justify-between text-white border-b border-retroBorder/30 pb-1 mb-1">
-                <span>INTERACTIVE_AGENDA</span>
-                <span>v1.0.3</span>
-              </div>
-              <div class="flex items-center gap-2 border-l border-retroGreen pl-2 py-0.5">
-                <div>
-                  <div class="text-[7px] text-white">KEYNOTE: WEB_FUTURE</div>
-                  <div class="text-[6px]">10:00 - 10:45 AM</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2 border-l border-retroBorder pl-2 py-0.5">
-                <div>
-                  <div class="text-[7px]">NETWORKING BREAK</div>
-                  <div class="text-[6px]">10:45 - 11:00 AM</div>
-                </div>
-              </div>
-            </div>
-            <div class="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center p-6 transition-all duration-300">
-              <span class="font-mono text-xs text-retroAmber mb-2">[ CUSTOM JS WEB APP ]</span>
-              <p class="text-xs text-center text-gray-400">Interactive schedule calendar app utilizing Vanilla JavaScript and HTML5 LocalStorage, providing tailored attendee bookmarks.</p>
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-lg font-bold text-white group-hover:text-retroAmber transition-colors font-display-custom">Smart Agenda Panel</h3>
-              <span class="font-mono text-[9px] text-retroAmber border border-retroAmber/30 px-2 py-0.5 rounded">Digital Solutions</span>
-            </div>
-            <p class="text-gray-400 text-xs mb-4 font-sans line-clamp-2">Interactive, fast, and light scheduler panel built for multi-track conventions and large corporate summit events.</p>
-            <div class="flex flex-wrap gap-2 mb-4 font-mono text-[9px] text-gray-500">
-              <span>#JavaScript</span>
-              <span>#Vanilla_DOM</span>
-              <span>#CSS_Grid</span>
-              <span>#Storage</span>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[10px] uppercase">
-              <a href="#" class="text-retroAmber hover:underline flex items-center gap-1">Repository <span>&rarr;</span></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 6: Custom Gutenberg Block Plugin -->
-        <div class="portfolio-item show reveal-on-scroll reveal-on-scroll delay-200 border border-retroBorder bg-retroCard rounded overflow-hidden hover:border-retroAmber/50 transition-all duration-300 group" data-category="wordpress">
-          <div class="aspect-video relative overflow-hidden bg-gradient-to-br from-pink-950/20 to-slate-900 border-b border-retroBorder flex items-center justify-center p-6">
-            <!-- Mock wireframe representing plugin settings -->
-            <div class="w-full h-full border border-retroBorder/50 rounded p-3 font-mono text-[8px] text-gray-500 overflow-hidden relative crt-screen">
-              <div class="flex justify-between border-b border-retroBorder/30 pb-1 mb-1 items-center">
-                <span class="text-white">BLOCK_REGISTER.JS</span>
-                <span class="text-retroAmber">WP_HOOKS</span>
-              </div>
-              <div class="space-y-2 mt-2">
-                <div class="flex justify-between items-center bg-retroBorder/40 p-1 rounded">
-                  <span>Show Retro Frame</span>
-                  <span class="h-3 w-6 bg-retroGreen/20 border border-retroGreen/50 rounded-full flex justify-end items-center px-0.5"><span class="h-2 w-2 bg-retroGreen rounded-full"></span></span>
-                </div>
-                <div class="flex justify-between items-center bg-retroBorder/40 p-1 rounded">
-                  <span>Contrast Mode</span>
-                  <span class="h-3 w-6 bg-retroBorder border border-retroBorder/80 rounded-full flex justify-start items-center px-0.5"><span class="h-2 w-2 bg-gray-500 rounded-full"></span></span>
-                </div>
-              </div>
-            </div>
-            <div class="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center p-6 transition-all duration-300">
-              <span class="font-mono text-xs text-retroAmber mb-2">[ WORDPRESS PLUGIN ]</span>
-              <p class="text-xs text-center text-gray-400">Custom Gutenberg dynamic blocks plugin built with PHP endpoints and React components to streamline custom grid generation.</p>
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="text-lg font-bold text-white group-hover:text-retroAmber transition-colors font-display-custom">Gutenberg Grid Plugin</h3>
-              <span class="font-mono text-[9px] text-retroAmber border border-retroAmber/30 px-2 py-0.5 rounded">WP</span>
-            </div>
-            <p class="text-gray-400 text-xs mb-4 font-sans line-clamp-2">Tailored block attributes registration plugin utilizing native React fields and PHP render callbacks.</p>
-            <div class="flex flex-wrap gap-2 mb-4 font-mono text-[9px] text-gray-500">
-              <span>#WP_Plugin</span>
-              <span>#React_JS</span>
-              <span>#PHP_Render</span>
-              <span>#Hooks</span>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[10px] uppercase">
-              <a href="#" class="text-retroAmber hover:underline flex items-center gap-1">Docs <span>&rarr;</span></a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Matrix Section -->
-  <section id="skills" class="py-24 border-t border-retroBorder max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <!-- Left side: title -->
-      <div class="lg:col-span-4 flex flex-col justify-start">
-        <span class="font-mono text-xs text-retroAmber uppercase tracking-widest mb-2">[ 05 // SYSTEM CORE ]</span>
-        <h2 class="font-display-custom font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
-          Tech Stack & Skills
-        </h2>
-        <p class="mt-4 text-sm text-gray-400 font-sans leading-relaxed">
-          Detailed metrics showing current core proficiencies and platform capabilities. Built modularly to grow dynamically.
-        </p>
-        <div class="w-12 h-1 bg-retroAmber mt-6"></div>
-      </div>
-
-      <!-- Right side: Custom animated visual cards -->
-      <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-        
-        <!-- Skill 1: WordPress Custom Architecture -->
-        <div class="reveal-on-scroll border border-retroBorder bg-retroCard p-6 rounded hover:border-retroAmber transition-all group">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="font-display-custom text-white font-bold group-hover:text-retroAmber transition-colors">WordPress Core</h3>
-            <span class="font-mono text-xs text-retroAmber">95%</span>
-          </div>
-          <!-- Bar visualizer -->
-          <div class="w-full bg-[#1c1c1c] h-[3px] rounded-full mb-4 overflow-hidden">
-            <div class="bg-retroAmber h-full w-[95%] transition-all duration-1000"></div>
-          </div>
-          <p class="text-xs text-gray-400 font-sans">Custom parent/child themes, REST API extensions, Gutenberg core blocks development, custom post loops, hook filter engineering.</p>
-        </div>
-
-        <!-- Skill 2: PHP & Backend Logic -->
-        <div class="reveal-on-scroll border border-retroBorder bg-retroCard p-6 rounded hover:border-retroAmber transition-all group">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="font-display-custom text-white font-bold group-hover:text-retroAmber transition-colors">PHP Development</h3>
-            <span class="font-mono text-xs text-retroAmber">90%</span>
-          </div>
-          <div class="w-full bg-[#1c1c1c] h-[3px] rounded-full mb-4 overflow-hidden">
-            <div class="bg-retroAmber h-full w-[90%] transition-all duration-1000"></div>
-          </div>
-          <p class="text-xs text-gray-400 font-sans">Object-oriented programming, MySQL queries optimization, form processing, secure router controllers, hub integration scripts.</p>
-        </div>
-
-        <!-- Skill 3: HTML5 & CSS3 Architecture -->
-        <div class="reveal-on-scroll border border-retroBorder bg-retroCard p-6 rounded hover:border-retroAmber transition-all group">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="font-display-custom text-white font-bold group-hover:text-retroAmber transition-colors">HTML5 / CSS3 / Tailwind</h3>
-            <span class="font-mono text-xs text-retroGreen">98%</span>
-          </div>
-          <div class="w-full bg-[#1c1c1c] h-[3px] rounded-full mb-4 overflow-hidden">
-            <div class="bg-retroGreen h-full w-[98%] transition-all duration-1000"></div>
-          </div>
-          <p class="text-xs text-gray-400 font-sans">Semantic structures, flex/grid layouts, responsive layouts, Tailwind configuration, CSS custom variables, custom animations.</p>
-        </div>
-
-        <!-- Skill 4: JavaScript & Interactive UI -->
-        <div class="reveal-on-scroll border border-retroBorder bg-retroCard p-6 rounded hover:border-retroAmber transition-all group">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="font-display-custom text-white font-bold group-hover:text-retroAmber transition-colors">Vanilla JS & DOM</h3>
-            <span class="font-mono text-xs text-retroAmber">85%</span>
-          </div>
-          <div class="w-full bg-[#1c1c1c] h-[3px] rounded-full mb-4 overflow-hidden">
-            <div class="bg-retroAmber h-full w-[85%] transition-all duration-1000"></div>
-          </div>
-          <p class="text-xs text-gray-400 font-sans">Intersection Observer APIs, async fetch calls, LocalStorage integration, DOM mutations, dynamic component routing.</p>
-        </div>
-
-        <!-- Skill 5: Digital Assets & CDN Deployment -->
-        <div class="reveal-on-scroll border border-retroBorder bg-retroCard p-6 rounded hover:border-retroAmber transition-all group">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="font-display-custom text-white font-bold group-hover:text-retroAmber transition-colors">Digital Solutions</h3>
-            <span class="font-mono text-xs text-retroAmber">88%</span>
-          </div>
-          <div class="w-full bg-[#1c1c1c] h-[3px] rounded-full mb-4 overflow-hidden">
-            <div class="bg-retroAmber h-full w-[88%] transition-all duration-1000"></div>
-          </div>
-          <p class="text-xs text-gray-400 font-sans">Caching orchestration, server coordination, event portals deployment, CDN assets serving, domain mapping, high-traffic setups.</p>
-        </div>
-
-        <!-- Skill 6: Theme Portability Framework -->
-        <div class="reveal-on-scroll border border-retroBorder bg-retroCard p-6 rounded hover:border-retroAmber transition-all group">
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="font-display-custom text-white font-bold group-hover:text-retroAmber transition-colors">Modular Template Flow</h3>
-            <span class="font-mono text-xs text-retroGreen">92%</span>
-          </div>
-          <div class="w-full bg-[#1c1c1c] h-[3px] rounded-full mb-4 overflow-hidden">
-            <div class="bg-retroGreen h-full w-[92%] transition-all duration-1000"></div>
-          </div>
-          <p class="text-xs text-gray-400 font-sans">Clean split file setups, metadata mapping, custom fields setup (ACF), child templates hooks architecture, SEO tag structures.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Form Section -->
-  <section id="contact" class="py-24 border-t border-retroBorder bg-black/30">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        
-        <!-- Left Side: contact header and metadata -->
-        <div class="lg:col-span-4 flex flex-col justify-start">
-          <span class="font-mono text-xs text-retroAmber uppercase tracking-widest mb-2">[ 06 // LINK_ESTABLISH ]</span>
-          <h2 class="font-display-custom font-extrabold text-3xl md:text-4xl text-white uppercase tracking-tight">
-            Contact
-          </h2>
-          <p class="mt-4 text-sm text-gray-400 font-sans leading-relaxed">
-            Need a secure corporate system, a WordPress template, or a customized digital assets hub? Let's connect and build it.
-          </p>
-          <div class="w-12 h-1 bg-retroAmber mt-6 mb-8"></div>
-
-          <!-- Direct details -->
-          <div class="space-y-4 font-mono text-xs text-gray-400">
-            <div class="flex items-center gap-2">
-              <span class="text-retroAmber">MAIL:</span>
-              <a href="mailto:lohith.bc@email.com" class="hover:text-white transition-colors">lohith.bc@email.com</a>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-retroAmber">GITHUB:</span>
-              <a href="#" class="hover:text-white transition-colors">github.com/lohith-bc</a>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-retroAmber">LINKEDIN:</span>
-              <a href="#" class="hover:text-white transition-colors">linkedin.com/in/lohith-bc</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Side: The Contact Form -->
-        <!-- WORDPRESS INTEGRATION NOTE:
-             To integrate this contact form with WordPress, you can hook it into 
-             Contact Form 7, WPForms shortcode, or handle via an admin-ajax.php action. -->
-        <div class="lg:col-span-8">
-          <form id="contact-form" action="#" method="POST" class="space-y-6 font-mono text-xs">
+          <!-- Experience Card 2 -->
+          <div class="relative">
+            <!-- Bullet Point node -->
+            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-retroBg border border-gray-600"></span>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Name Input -->
-              <div class="space-y-2">
-                <label for="name" class="text-gray-400 block tracking-wider">USER_NAME :</label>
-                <input type="text" id="name" name="name" required class="w-full bg-retroCard border border-retroBorder hover:border-retroAmber focus:border-retroAmber focus:ring-1 focus:ring-retroAmber transition-colors px-4 py-3 rounded text-white outline-none" placeholder="e.g. Lohith BC">
-              </div>
-              <!-- Email Input -->
-              <div class="space-y-2">
-                <label for="email" class="text-gray-400 block tracking-wider">USER_EMAIL :</label>
-                <input type="email" id="email" name="email" required class="w-full bg-retroCard border border-retroBorder hover:border-retroAmber focus:border-retroAmber focus:ring-1 focus:ring-retroAmber transition-colors px-4 py-3 rounded text-white outline-none" placeholder="e.g. lohith@example.com">
-              </div>
+            <div class="flex flex-col sm:flex-row sm:justify-between items-start gap-1 mb-2 font-mono text-xs">
+              <span class="text-white font-bold uppercase text-sm">Freelance Web Engineering</span>
+              <span class="text-gray-500">[ 2019 — 2022 ]</span>
             </div>
-
-            <!-- Subject Input -->
-            <div class="space-y-2">
-              <label for="subject" class="text-gray-400 block tracking-wider">PROJECT_SUBJECT :</label>
-              <input type="text" id="subject" name="subject" required class="w-full bg-retroCard border border-retroBorder hover:border-retroAmber focus:border-retroAmber focus:ring-1 focus:ring-retroAmber transition-colors px-4 py-3 rounded text-white outline-none" placeholder="e.g. Custom WordPress Development">
+            <div class="font-mono text-[10px] text-gray-500 uppercase tracking-wider mb-3">
+              Role: PHP / Frontend Consultant
             </div>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Designed custom web templates, created custom plugins to override native WordPress loops, and optimized code layouts for small business marketing portals in HTML, CSS, and vanilla JS.
+            </p>
+          </div>
 
-            <!-- Message Input -->
-            <div class="space-y-2">
-              <label for="message" class="text-gray-400 block tracking-wider">MESSAGE_BODY :</label>
-              <textarea id="message" name="message" rows="5" required class="w-full bg-retroCard border border-retroBorder hover:border-retroAmber focus:border-retroAmber focus:ring-1 focus:ring-retroAmber transition-colors px-4 py-3 rounded text-white outline-none resize-none" placeholder="Type your project description here..."></textarea>
-            </div>
+        </div>
+      </section>
 
-            <!-- Submit Button with Retro terminal styling -->
-            <div class="flex items-center justify-between flex-wrap gap-4 pt-2">
-              <div id="form-status" class="text-retroGreen font-mono text-[10px] tracking-wider uppercase opacity-0 transition-opacity">
-                [ STATUS: TRANSMITTING_MESSAGE... ]
-              </div>
-              <button type="submit" class="px-8 py-4 bg-transparent hover:bg-retroAmber text-retroAmber hover:text-black font-bold border border-retroAmber rounded transition-all tracking-wider shadow-[0_0_10px_rgba(245,158,11,0.1)] hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]">
-                SEND_MESSAGE &gt;&gt;
-              </button>
-            </div>
-
-          </form>
+      <!-- Section 4: Projects Portfolio -->
+      <section id="portfolio" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
+        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-retroAmber uppercase tracking-widest">
+          <span>[ 03 // ARCHIVE ]</span>
         </div>
 
-      </div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
+          <h2 class="font-display-custom font-extrabold text-3xl text-white uppercase">
+            Work Grid
+          </h2>
+          <!-- Monospace Filter Bar -->
+          <div class="flex flex-wrap gap-2 font-mono text-[10px] tracking-wider uppercase" id="portfolio-filters">
+            <button class="px-3 py-1.5 border border-retroAmber bg-retroAmber/10 text-retroAmber rounded transition-all hover:bg-retroAmber/25" data-filter="all">ALL</button>
+            <button class="px-3 py-1.5 border border-retroBorder bg-transparent text-gray-400 rounded transition-all hover:text-white hover:border-gray-500" data-filter="wp">WORDPRESS</button>
+            <button class="px-3 py-1.5 border border-retroBorder bg-transparent text-gray-400 rounded transition-all hover:text-white hover:border-gray-500" data-filter="php">PHP/API</button>
+            <button class="px-3 py-1.5 border border-retroBorder bg-transparent text-gray-400 rounded transition-all hover:text-white hover:border-gray-500" data-filter="frontend">FRONTEND</button>
+          </div>
+        </div>
+
+        <!-- Portfolio Projects Responsive Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="portfolio-grid">
+          
+          <!-- Project 1 (WordPress) -->
+          <div class="border border-retroBorder bg-black/40 rounded p-6 flex flex-col justify-between hover:border-retroAmber/50 transition-all group" data-category="wp">
+            <div>
+              <div class="flex justify-between items-center mb-4 font-mono text-[9px] text-gray-500 uppercase tracking-widest">
+                <span>[ CORE DEVELOPMENT ]</span>
+                <span class="text-retroAmber">WP_THEME</span>
+              </div>
+              <h3 class="font-mono text-sm font-bold text-white uppercase mb-2 group-hover:text-retroAmber transition-colors">
+                Bespoke WordPress Core Architecture
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                Clean custom theme built from scratch without bulky third-party builders, implementing custom post types and dynamic taxonomies.
+              </p>
+            </div>
+            <div class="flex justify-between items-center font-mono text-[9px] text-gray-500 uppercase pt-4 border-t border-retroBorder/50">
+              <span>WP 6.x / PHP 8.1</span>
+              <span class="text-white hover:underline cursor-pointer">[ VIEW_DETAILS ]</span>
+            </div>
+          </div>
+
+          <!-- Project 2 (PHP/API) -->
+          <div class="border border-retroBorder bg-black/40 rounded p-6 flex flex-col justify-between hover:border-retroAmber/50 transition-all group" data-category="php">
+            <div>
+              <div class="flex justify-between items-center mb-4 font-mono text-[9px] text-gray-500 uppercase tracking-widest">
+                <span>[ INTEGRATION ]</span>
+                <span class="text-retroAmber">API_CONNECTOR</span>
+              </div>
+              <h3 class="font-mono text-sm font-bold text-white uppercase mb-2 group-hover:text-retroAmber transition-colors">
+                CRM HubSpot Form Synchronization
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                A custom backend script that maps custom HTML fields, sanitizes inputs, and uses HubSpot APIs to queue form submissions.
+              </p>
+            </div>
+            <div class="flex justify-between items-center font-mono text-[9px] text-gray-500 uppercase pt-4 border-t border-retroBorder/50">
+              <span>HubSpot API / PHP curl</span>
+              <span class="text-white hover:underline cursor-pointer">[ VIEW_DETAILS ]</span>
+            </div>
+          </div>
+
+          <!-- Project 3 (WordPress) -->
+          <div class="border border-retroBorder bg-black/40 rounded p-6 flex flex-col justify-between hover:border-retroAmber/50 transition-all group" data-category="wp">
+            <div>
+              <div class="flex justify-between items-center mb-4 font-mono text-[9px] text-gray-500 uppercase tracking-widest">
+                <span>[ OPTIMIZATION ]</span>
+                <span class="text-retroAmber">WP_MODULE</span>
+              </div>
+              <h3 class="font-mono text-sm font-bold text-white uppercase mb-2 group-hover:text-retroAmber transition-colors">
+                Event Dynamic Schedule Grid
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                Custom Gutenberg block showing active sessions, filtering speakers dynamically without page re-renders.
+              </p>
+            </div>
+            <div class="flex justify-between items-center font-mono text-[9px] text-gray-500 uppercase pt-4 border-t border-retroBorder/50">
+              <span>WP API / JS ES6</span>
+              <span class="text-white hover:underline cursor-pointer">[ VIEW_DETAILS ]</span>
+            </div>
+          </div>
+
+          <!-- Project 4 (Frontend) -->
+          <div class="border border-retroBorder bg-black/40 rounded p-6 flex flex-col justify-between hover:border-retroAmber/50 transition-all group" data-category="frontend">
+            <div>
+              <div class="flex justify-between items-center mb-4 font-mono text-[9px] text-gray-500 uppercase tracking-widest">
+                <span>[ INTERFACE ]</span>
+                <span class="text-retroAmber">HTML5_CSS3</span>
+              </div>
+              <h3 class="font-mono text-sm font-bold text-white uppercase mb-2 group-hover:text-retroAmber transition-colors">
+                Performance Portfolio Dashboard
+              </h3>
+              <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                This responsive HUD developer dashboard featuring interactive 3D perspective grids and dynamic particle plexus.
+              </p>
+            </div>
+            <div class="flex justify-between items-center font-mono text-[9px] text-gray-500 uppercase pt-4 border-t border-retroBorder/50">
+              <span>HTML5 / CSS / Canvas</span>
+              <span class="text-white hover:underline cursor-pointer">[ VIEW_DETAILS ]</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section 5: Skills Matrices -->
+      <section id="skills" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
+        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-retroAmber uppercase tracking-widest">
+          <span>[ 04 // TECH_STACK ]</span>
+        </div>
+
+        <h2 class="font-display-custom font-extrabold text-3xl text-white uppercase mb-8">
+          Core Skills
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+          
+          <!-- Category 1: Backend -->
+          <div class="border border-retroBorder/50 bg-black/30 rounded p-5">
+            <h3 class="text-white font-bold uppercase mb-4 border-b border-retroBorder/30 pb-2 text-[11px] tracking-wider text-retroAmber">
+              // BACKEND_ORCHESTRATION
+            </h3>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex items-center justify-between">
+                <span>PHP (Core / WP API)</span>
+                <span class="text-retroGreen font-bold">● SENIOR</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>SQL / Database</span>
+                <span class="text-white">● ADVANCED</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>Third-Party APIs</span>
+                <span class="text-retroGreen font-bold">● SENIOR</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 2: WordPress -->
+          <div class="border border-retroBorder/50 bg-black/30 rounded p-5">
+            <h3 class="text-white font-bold uppercase mb-4 border-b border-retroBorder/30 pb-2 text-[11px] tracking-wider text-retroAmber">
+              // WP_ARCHITECTURE
+            </h3>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex items-center justify-between">
+                <span>Bespoke Themes</span>
+                <span class="text-retroGreen font-bold">● SENIOR</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>Custom Plugins</span>
+                <span class="text-retroGreen font-bold">● SENIOR</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>CRM Integrations</span>
+                <span class="text-retroGreen font-bold">● SENIOR</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 3: Frontend -->
+          <div class="border border-retroBorder/50 bg-black/30 rounded p-5">
+            <h3 class="text-white font-bold uppercase mb-4 border-b border-retroBorder/30 pb-2 text-[11px] tracking-wider text-retroAmber">
+              // FRONTEND_ENGINE
+            </h3>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex items-center justify-between">
+                <span>HTML5 / Vanilla CSS</span>
+                <span class="text-retroGreen font-bold">● SENIOR</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>JavaScript (ES6+)</span>
+                <span class="text-white">● ADVANCED</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span>Tailwind CSS</span>
+                <span class="text-white">● ADVANCED</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section 6: Contact Console -->
+      <section id="contact" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
+        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-retroAmber uppercase tracking-widest">
+          <span>[ 05 // TRANSMIT ]</span>
+        </div>
+
+        <h2 class="font-display-custom font-extrabold text-3xl text-white uppercase mb-6">
+          Contact Console
+        </h2>
+
+        <form class="space-y-6" id="contact-form" action="#" method="POST">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
+            
+            <div class="flex flex-col gap-2">
+              <label for="name" class="text-gray-400 uppercase tracking-wider">Name_Input</label>
+              <input type="text" id="name" name="name" required class="bg-black/60 border border-retroBorder/80 rounded px-4 py-3 focus:outline-none focus:border-retroAmber text-white font-mono text-xs transition-colors" placeholder="e.g. USER_NAME">
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="email" class="text-gray-400 uppercase tracking-wider">Email_Address</label>
+              <input type="email" id="email" name="email" required class="bg-black/60 border border-retroBorder/80 rounded px-4 py-3 focus:outline-none focus:border-retroAmber text-white font-mono text-xs transition-colors" placeholder="e.g. USER@DOMAIN.COM">
+            </div>
+
+          </div>
+
+          <div class="flex flex-col gap-2 font-mono text-xs">
+            <label for="message" class="text-gray-400 uppercase tracking-wider">Message_Payload</label>
+            <textarea id="message" name="message" rows="5" required class="bg-black/60 border border-retroBorder/80 rounded px-4 py-3 focus:outline-none focus:border-retroAmber text-white font-mono text-xs transition-colors resize-none" placeholder="ENTER MESSAGE PAYLOAD HERE..."></textarea>
+          </div>
+
+          <!-- Simulated Console Status Log inside the Form -->
+          <div class="font-mono text-[10px] text-gray-500 border border-retroBorder/40 bg-black/80 rounded p-3 min-h-[40px] flex items-center justify-between">
+            <span id="form-status-log" class="text-gray-500 select-none">[ STATUS: SYSTEM_IDLE ]</span>
+            <span class="text-[8px] opacity-50 uppercase">Port_8080</span>
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-retroAmber hover:bg-yellow-600 text-black font-bold font-mono text-xs uppercase tracking-widest rounded border border-retroAmber hover:border-yellow-600 transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)] hover:shadow-[0_0_20px_rgba(245,158,11,0.45)]">
+            Transmit Packet
+          </button>
+        </form>
+      </section>
+
     </div>
-  </section>
+  </main>
 
-  <!-- WORDPRESS TEMPLATE SPLIT: footer.php START -->
-
-  <!-- Footer -->
-  <footer class="border-t border-retroBorder bg-black/60 py-12">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 font-mono text-[10px] text-gray-500 tracking-wider">
-      
+  <!-- Footer / Status Bar -->
+  <footer class="border-t border-retroBorder bg-[#080808]/85 backdrop-blur-md py-6 font-mono text-[10px] text-gray-500 tracking-wider">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
-        <span>&copy; <span id="current-year">2026</span> LOHITH BC. ALL RIGHTS RESERVED.</span>
+        © 2026 LOHITH_BC. ALL RIGHTS SECURED.
       </div>
-
-      <!-- Live Clock / Timezone tracking for premium aesthetic -->
+      <!-- Real-time Footer Clock Widget -->
       <div class="flex items-center gap-4">
-        <div>TZ: <span class="text-gray-400">ASIA/KOLKATA (GMT+5:30)</span></div>
-        <div class="hidden sm:block">|</div>
-        <div>SYS_TIME: <span id="live-clock" class="text-retroAmber">10:11:00 AM</span></div>
+        <span>LOC_TIME: <span class="text-white" id="live-time">12:00:00 AM</span></span>
+        <span class="text-retroAmber font-bold">// SECURE_CHANNEL</span>
       </div>
-
-      <div class="flex gap-4">
-        <a href="#hero" class="hover:text-white transition-colors uppercase">Top_Of_Page &uarr;</a>
-      </div>
-
     </div>
   </footer>
 
-  <!-- WORDPRESS TEMPLATE SPLIT: footer.php END -->
-
-  <!-- Custom Core Behavior Script -->
+  <!-- App Behavior JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
