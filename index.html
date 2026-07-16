@@ -111,6 +111,24 @@
         </div>
       </div>
 
+      <!-- Widget 1.5: Theme Selector HUD Control -->
+      <div class="hud-panel p-5 rounded">
+        <div class="flex items-center justify-between border-b border-retroBorder/50 pb-3 mb-4 font-mono text-xs uppercase tracking-wider">
+          <span class="text-theme-primary font-bold transition-colors" id="theme-panel-title">[ HUD_COLOR_THEME ]</span>
+          <span class="text-gray-500 font-mono text-[9px]">SECURE</span>
+        </div>
+        <div class="flex items-center justify-around py-1">
+          <!-- Amber Theme Button -->
+          <button class="w-8 h-8 rounded-full border-2 border-retroAmber bg-retroAmber/25 shadow-[0_0_8px_rgba(245,158,11,0.4)] focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn" id="theme-btn-amber" title="Amber Theme" aria-label="Amber Theme"></button>
+          <!-- Green Theme Button -->
+          <button class="w-8 h-8 rounded-full border-2 border-emerald-500 bg-emerald-500/10 focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn" id="theme-btn-green" title="Terminal Green Theme" aria-label="Terminal Green Theme"></button>
+          <!-- Cyan Theme Button -->
+          <button class="w-8 h-8 rounded-full border-2 border-cyan-500 bg-cyan-500/10 focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn" id="theme-btn-cyan" title="Cyber Cyan Theme" aria-label="Cyber Cyan Theme"></button>
+          <!-- Magenta Theme Button -->
+          <button class="w-8 h-8 rounded-full border-2 border-fuchsia-500 bg-fuchsia-500/10 focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn" id="theme-btn-magenta" title="Pulse Magenta Theme" aria-label="Pulse Magenta Theme"></button>
+        </div>
+      </div>
+
       <!-- Widget 2: Live Diagnostic Log Terminal -->
       <div class="hud-panel p-5 rounded flex-grow flex flex-col min-h-[220px]">
         <div class="flex items-center justify-between border-b border-retroBorder/50 pb-3 mb-3 font-mono text-xs uppercase tracking-wider">

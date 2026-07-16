@@ -3,8 +3,12 @@
  * Manages canvas visual systems, simulated loggers, metric fluctuations, and core portfolio behavior.
  */
 
+// Global active theme RGB cache (default to Amber)
+window.activeThemeRGB = '245, 158, 11';
+
 document.addEventListener('DOMContentLoaded', () => {
   initCanvasBackground();
+  initThemeSwitcher();
   initMobileMenu();
   initScrollAnimations();
   initActiveNavTracking();
@@ -88,7 +92,7 @@ function initCanvasBackground() {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(245, 158, 11, 0.4)'; // Amber glow nodes
+      ctx.fillStyle = `rgba(${window.activeThemeRGB}, 0.4)`; // Dynamic node color
       ctx.fill();
     }
   }
@@ -104,7 +108,7 @@ function initCanvasBackground() {
     const gridYStart = horizon + 20;
     const gridHeight = canvas.height - gridYStart;
     
-    ctx.strokeStyle = 'rgba(245, 158, 11, 0.04)'; // Extremely faint amber grid
+    ctx.strokeStyle = `rgba(${window.activeThemeRGB}, 0.04)`; // Dynamic grid color
     ctx.lineWidth = 1;
 
     // Draw vanishing perspective lines radiating from top-center horizon
@@ -130,7 +134,6 @@ function initCanvasBackground() {
     while (currentY < gridHeight) {
       // Calculate depth spacing
       const normalizedPos = currentY / gridHeight;
-      const offsetPos = ((currentY + gridOffset) / gridHeight);
       
       // Calculate drawing Y with perspective compression
       const drawY = gridYStart + Math.pow(normalizedPos, 1.8) * gridHeight;
@@ -138,7 +141,7 @@ function initCanvasBackground() {
       if (drawY > gridYStart && drawY < canvas.height) {
         // Fade lines near the horizon
         const opacity = Math.min((drawY - gridYStart) / 100, 1) * 0.05;
-        ctx.strokeStyle = `rgba(245, 158, 11, ${opacity})`;
+        ctx.strokeStyle = `rgba(${window.activeThemeRGB}, ${opacity})`; // Dynamic line color
         ctx.beginPath();
         ctx.moveTo(0, drawY);
         ctx.lineTo(canvas.width, drawY);
@@ -174,7 +177,7 @@ function initCanvasBackground() {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(245, 158, 11, ${opacity})`;
+          ctx.strokeStyle = `rgba(${window.activeThemeRGB}, ${opacity})`; // Dynamic line color
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
@@ -231,7 +234,6 @@ function initScrollAnimations() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('revealed');
-        // Stop observing once revealed
         observer.unobserve(entry.target);
       }
     });
@@ -298,7 +300,6 @@ function initPortfolioFilters() {
         const itemCategory = item.getAttribute('data-category');
         if (filterValue === 'all' || itemCategory === filterValue) {
           item.style.display = 'flex';
-          // Trigger slight fade-in transition
           item.style.opacity = '0';
           setTimeout(() => {
             item.style.opacity = '1';
@@ -320,7 +321,6 @@ function initLiveClock() {
   const uptimeEl = document.getElementById('uptime-counter');
 
   function updateTimes() {
-    // 1. Live Time in Bengaluru Timezone (IST)
     const options = {
       timeZone: 'Asia/Kolkata',
       hour: '2-digit',
@@ -333,7 +333,6 @@ function initLiveClock() {
       liveClockEl.textContent = formatter.format(new Date());
     }
 
-    // 2. Uptime counter tracker
     uptimeSeconds++;
     const hrs = String(Math.floor(uptimeSeconds / 3600)).padStart(2, '0');
     const mins = String(Math.floor((uptimeSeconds % 3600) / 60)).padStart(2, '0');
@@ -390,23 +389,17 @@ function initProcessLogger() {
     logLine.innerHTML = `<span class="text-gray-500">${timestamp}</span> <span class="font-bold">${typeTag}</span> ${logItem.msg}`;
     logContainer.appendChild(logLine);
 
-    // Keep scroll aligned at bottom
     logContainer.scrollTop = logContainer.scrollHeight;
-
-    // Cycle through mock items
     logIndex = (logIndex + 1) % mockLogs.length;
 
-    // Bounded log length to prevent DOM memory leaks
     if (logContainer.children.length > 50) {
       logContainer.removeChild(logContainer.firstChild);
     }
 
-    // Schedule next log entry with slightly variable interval pings
     const nextInterval = Math.random() * 2000 + 1200;
     setTimeout(appendLog, nextInterval);
   }
 
-  // Start logger cycle
   appendLog();
 }
 
@@ -422,8 +415,6 @@ function initMetricBars() {
   const apiBar = document.getElementById('api-load-bar');
 
   function fluctuateMetrics() {
-    // Generate slight fluctuations around baselines
-    // WP baseline: 18%, DB baseline: 42%, API baseline: 29%
     const newWp = Math.max(10, Math.min(30, Math.floor(18 + (Math.random() - 0.5) * 8)));
     const newDb = Math.max(30, Math.min(60, Math.floor(42 + (Math.random() - 0.5) * 12)));
     const newApi = Math.max(15, Math.min(45, Math.floor(29 + (Math.random() - 0.5) * 10)));
@@ -461,7 +452,6 @@ function initContactForm() {
     statusLog.classList.remove('text-red-500', 'text-retroGreen');
     statusLog.classList.add('text-retroAmber');
 
-    // Simulate connection ping delays
     setTimeout(() => {
       statusLog.textContent = '[ STATUS: SHIFTING_PORTS_AND_COMPRESSING... ]';
       
@@ -482,5 +472,56 @@ function initContactForm() {
       }, 1500);
 
     }, 1200);
+  });
+}
+
+/**
+ * 10. Interactive HUD Color Theme Switcher Logic
+ */
+function initThemeSwitcher() {
+  const btns = document.querySelectorAll('.theme-selector-btn');
+  const body = document.body;
+
+  if (btns.length === 0) return;
+
+  // Colors mapping for canvas updates
+  const themeColors = {
+    amber: { rgb: '245, 158, 11', border: 'border-retroAmber', bg: 'bg-retroAmber/25', glow: 'shadow-[0_0_8px_rgba(245,158,11,0.4)]' },
+    green: { rgb: '16, 185, 129', border: 'border-emerald-500', bg: 'bg-emerald-500/25', glow: 'shadow-[0_0_8px_rgba(16,185,129,0.4)]' },
+    cyan: { rgb: '6, 182, 212', border: 'border-cyan-500', bg: 'bg-cyan-500/25', glow: 'shadow-[0_0_8px_rgba(6,182,212,0.4)]' },
+    magenta: { rgb: '217, 70, 239', border: 'border-fuchsia-500', bg: 'bg-fuchsia-500/25', glow: 'shadow-[0_0_8px_rgba(217,70,239,0.4)]' }
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const themeId = btn.id.replace('theme-btn-', '');
+
+      // Remove current body classes
+      body.classList.remove('theme-green', 'theme-cyan', 'theme-magenta');
+      
+      // Add class if not default (amber)
+      if (themeId !== 'amber') {
+        body.classList.add(`theme-${themeId}`);
+      }
+
+      // Update global active theme color for Canvas
+      window.activeThemeRGB = themeColors[themeId].rgb;
+
+      // Update button styling states
+      btns.forEach(otherBtn => {
+        const otherId = otherBtn.id.replace('theme-btn-', '');
+        const config = themeColors[otherId];
+        
+        otherBtn.className = `w-8 h-8 rounded-full border-2 focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn ${config.border}`;
+        
+        if (otherId === themeId) {
+          // Add active states
+          otherBtn.className += ` ${config.bg} ${config.glow}`;
+        } else {
+          // Add inactive states
+          otherBtn.className += ` bg-transparent opacity-60`;
+        }
+      });
+    });
   });
 }
