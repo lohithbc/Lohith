@@ -417,9 +417,9 @@ export default function App() {
           {/* Left Block */}
           <div className="flex flex-col gap-4">
             <h1 className="text-white font-light leading-[0.95] tracking-[-0.03em] text-[clamp(40px,10vw,100px)]">
-              <ScrambleIn text="Custom" delay={200} triggered={entranceComplete} />
+              <ScrambleIn text="Lohith" delay={200} triggered={entranceComplete} />
               <br />
-              <ScrambleIn text="WordPress" delay={500} triggered={entranceComplete} />
+              <ScrambleIn text="BC" delay={500} triggered={entranceComplete} />
             </h1>
 
             <motion.p
@@ -435,9 +435,9 @@ export default function App() {
           {/* Right Block */}
           <div>
             <h1 className="text-white font-light leading-[0.95] tracking-[-0.03em] text-[clamp(40px,10vw,100px)] text-left md:text-right">
-              <ScrambleIn text="PHP" delay={700} triggered={entranceComplete} />
+              <ScrambleIn text="WEB" delay={700} triggered={entranceComplete} />
               <br />
-              <ScrambleIn text="Architect" delay={1000} triggered={entranceComplete} />
+              <ScrambleIn text="DEVELOPER" delay={1000} triggered={entranceComplete} />
             </h1>
           </div>
 
