@@ -308,7 +308,7 @@ export default function App() {
             className={`h-9 sm:h-12 px-3 sm:px-5 flex items-center gap-2 backdrop-blur-md rounded-[10px] sm:rounded-[14px] bg-white/15 border border-white/5 cursor-pointer transition-all duration-300 ${isMenuOpen ? 'hidden md:flex' : 'flex'}`}
           >
             <SynapseXLogo className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-            <ScrambleText text="SynapseX" isHovered={hoveredLogo} className="text-white text-xs sm:text-base font-medium tracking-tight" />
+            <ScrambleText text="LBC // DEV" isHovered={hoveredLogo} className="text-white text-xs sm:text-base font-medium tracking-tight" />
           </motion.div>
 
           {/* Expanding Menu Pill */}
@@ -407,7 +407,7 @@ export default function App() {
               WebkitBackgroundClip: 'text'
             }}
           >
-            TRANSCENDENCE
+            ORCHESTRATION
           </span>
         </div>
 
@@ -417,9 +417,9 @@ export default function App() {
           {/* Left Block */}
           <div className="flex flex-col gap-4">
             <h1 className="text-white font-light leading-[0.95] tracking-[-0.03em] text-[clamp(40px,10vw,100px)]">
-              <ScrambleIn text="Brain" delay={200} triggered={entranceComplete} />
+              <ScrambleIn text="Custom" delay={200} triggered={entranceComplete} />
               <br />
-              <ScrambleIn text="And Body" delay={500} triggered={entranceComplete} />
+              <ScrambleIn text="WordPress" delay={500} triggered={entranceComplete} />
             </h1>
 
             <motion.p
@@ -428,16 +428,16 @@ export default function App() {
               transition={{ duration: 0.9, ease: [0.215, 0.610, 0.355, 1.0], delay: 0.2 }}
               className="max-w-sm text-[13px] sm:text-[15px] text-white/60 leading-relaxed font-mono-custom"
             >
-              Built at the intersection of neuroscience and artificial intelligence. SynapseX continuously maps neural pathways, cognitive load, and physiological states into a single adaptive intelligence layer.
+              Senior Web Developer bridging frontend interfaces with high-performance database ecosystems. Specializing in bespoke theme engineering, custom PHP scripting, and HubSpot CRM sync pipelines.
             </motion.p>
           </div>
 
           {/* Right Block */}
           <div>
             <h1 className="text-white font-light leading-[0.95] tracking-[-0.03em] text-[clamp(40px,10vw,100px)] text-left md:text-right">
-              <ScrambleIn text="One" delay={700} triggered={entranceComplete} />
+              <ScrambleIn text="PHP" delay={700} triggered={entranceComplete} />
               <br />
-              <ScrambleIn text="Network" delay={1000} triggered={entranceComplete} />
+              <ScrambleIn text="Architect" delay={1000} triggered={entranceComplete} />
             </h1>
           </div>
 
@@ -471,7 +471,7 @@ export default function App() {
             }}
             className="font-sans-custom font-normal text-[20px] sm:text-[30px] md:text-[36px] lg:text-[42px] text-white leading-[1.35] tracking-[-0.02em] select-none text-center"
           >
-            A neural-AI interface built on the architecture of the human nervous system. SynapseX translates synaptic activity into computational intelligence. Every signal becomes measurable, structured, and visible. It continuously reconstructs internal state as a dynamic neural map. Biological noise is filtered into actionable cognitive patterns.
+            A digital solutions architect building on the architecture of fast, modern web systems. Translating server operations into clean, high-performance code pipelines. Every webhook becomes secure, structured, and validated. Continuously mapping CRM data arrays into custom HubSpot pipelines. Biological code structures optimized into high-traffic digital assets.
           </motion.p>
         </div>
       </section>
@@ -502,7 +502,7 @@ export default function App() {
             transition={{ duration: 1.2 }}
             className="text-white/40 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-20 text-center font-mono-custom"
           >
-            Performance Metrics
+            Performance Benchmarks
           </motion.p>
 
           {/* Grid indicators */}
@@ -516,8 +516,8 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0 }}
               className="flex flex-col items-center md:items-start text-center md:text-left"
             >
-              <span className="text-white text-[clamp(48px,10vw,96px)] font-light tracking-[-0.04em] leading-none">2.4ms</span>
-              <span className="text-white/40 text-[13px] sm:text-[15px] mt-4 tracking-wide font-mono-custom">Synaptic Latency</span>
+              <span className="text-white text-[clamp(48px,10vw,96px)] font-light tracking-[-0.04em] leading-none">40%+</span>
+              <span className="text-white/40 text-[13px] sm:text-[15px] mt-4 tracking-wide font-mono-custom">Page-Speed Gains</span>
             </motion.div>
 
             {/* Metric 2 */}
@@ -528,8 +528,8 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.15 }}
               className="flex flex-col items-center md:items-start text-center md:text-left"
             >
-              <span className="text-white text-[clamp(48px,10vw,96px)] font-light tracking-[-0.04em] leading-none">99.7%</span>
-              <span className="text-white/40 text-[13px] sm:text-[15px] mt-4 tracking-wide font-mono-custom">Signal Accuracy</span>
+              <span className="text-white text-[clamp(48px,10vw,96px)] font-light tracking-[-0.04em] leading-none">10K+</span>
+              <span className="text-white/40 text-[13px] sm:text-[15px] mt-4 tracking-wide font-mono-custom">Event Registrations</span>
             </motion.div>
 
             {/* Metric 3 */}
@@ -540,8 +540,8 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col items-center md:items-start text-center md:text-left"
             >
-              <span className="text-white text-[clamp(48px,10vw,96px)] font-light tracking-[-0.04em] leading-none">140B</span>
-              <span className="text-white/40 text-[13px] sm:text-[15px] mt-4 tracking-wide font-mono-custom">Neural Parameters</span>
+              <span className="text-white text-[clamp(48px,10vw,96px)] font-light tracking-[-0.04em] leading-none">100%</span>
+              <span className="text-white/40 text-[13px] sm:text-[15px] mt-4 tracking-wide font-mono-custom">CRM Leads Synced</span>
             </motion.div>
 
           </div>
@@ -573,9 +573,9 @@ export default function App() {
             transition={{ duration: 1.0 }}
             className="text-white font-light text-[clamp(36px,8vw,72px)] leading-[0.95] tracking-[-0.03em]"
           >
-            Adaptive
+            Technical
             <br />
-            Intelligence
+            Core Stack
           </motion.h2>
 
           <motion.p
@@ -585,7 +585,7 @@ export default function App() {
             transition={{ duration: 1.0, delay: 0.2 }}
             className="text-white/50 text-[13px] sm:text-[15px] leading-relaxed max-w-xs md:text-right md:pt-2 font-mono-custom"
           >
-            The system learns your neural baseline within 72 hours. From there, every cognitive state is mapped, predicted, and optimized in real time.
+            Custom environments engineered for speed, scalability, and security. Optimizing native WordPress cores and syncing custom web forms with centralized CRMs.
           </motion.p>
         </div>
 
@@ -608,8 +608,8 @@ export default function App() {
             variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.7 } } }}
             className="flex flex-col"
           >
-            <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 uppercase tracking-wide">Cortical Mapping</h3>
-            <p className="text-white/40 text-[12px] sm:text-[14px] leading-relaxed">Real-time spatial reconstruction of active neural regions.</p>
+            <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 uppercase tracking-wide">Bespoke Themes</h3>
+            <p className="text-white/40 text-[12px] sm:text-[14px] leading-relaxed">Clean theme development without bloated page builders.</p>
           </motion.div>
 
           {/* Tech 2 */}
@@ -617,8 +617,8 @@ export default function App() {
             variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.7 } } }}
             className="flex flex-col"
           >
-            <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 uppercase tracking-wide">Signal Isolation</h3>
-            <p className="text-white/40 text-[12px] sm:text-[14px] leading-relaxed">Separates cognitive intent from biological noise.</p>
+            <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 uppercase tracking-wide">API Orchestration</h3>
+            <p className="text-white/40 text-[12px] sm:text-[14px] leading-relaxed">Writing custom PHP curl handlers for third-party integrations.</p>
           </motion.div>
 
           {/* Tech 3 */}
@@ -626,8 +626,8 @@ export default function App() {
             variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.7 } } }}
             className="flex flex-col"
           >
-            <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 uppercase tracking-wide">State Prediction</h3>
-            <p className="text-white/40 text-[12px] sm:text-[14px] leading-relaxed">Anticipates cognitive transitions before they occur.</p>
+            <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 uppercase tracking-wide">Performance Caching</h3>
+            <p className="text-white/40 text-[12px] sm:text-[14px] leading-relaxed">Minimizing database handshake latencies and script overlays.</p>
           </motion.div>
 
           {/* Tech 4 */}
@@ -635,8 +635,8 @@ export default function App() {
             variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.7 } } }}
             className="flex flex-col"
           >
-            <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 uppercase tracking-wide">Loop Feedback</h3>
-            <p className="text-white/40 text-[12px] sm:text-[14px] leading-relaxed">Closed-loop adjustment based on outcome correlation.</p>
+            <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 uppercase tracking-wide">Gutenberg Blocks</h3>
+            <p className="text-white/40 text-[12px] sm:text-[14px] leading-relaxed">Designing dynamic custom Gutenberg layout modules in React.</p>
           </motion.div>
         </motion.div>
       </section>
@@ -656,12 +656,12 @@ export default function App() {
             transition={{ duration: 1.0 }}
             className="flex flex-col items-center"
           >
-            <span className="text-white/40 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8 font-mono-custom">Architecture</span>
+            <span className="text-white/40 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8 font-mono-custom">Methodology</span>
             <h2 className="text-white font-light text-[clamp(28px,6vw,56px)] leading-[1.15] tracking-[-0.02em] mb-10">
               Three layers. Zero friction.
             </h2>
             <p className="text-white/45 text-[15px] sm:text-[17px] leading-relaxed max-w-xl">
-              Sensor layer captures raw bioelectric signals. Processing layer isolates intent. Interface layer delivers structured output to any connected system.
+              Backend orchestrations manage database configurations. Core frameworks compile custom WordPress themes. API pipelines deliver synced CRM inputs to HubSpot.
             </p>
           </motion.div>
 
@@ -677,19 +677,19 @@ export default function App() {
             {/* Card 1 */}
             <div className="w-full max-w-md h-[72px] border border-white/10 rounded-lg flex items-center justify-between px-6 bg-white/[0.01]">
               <span className="text-white/30 text-[12px] tracking-[0.15em] uppercase font-mono-custom">Layer 1</span>
-              <span className="text-white text-[16px] sm:text-[18px] font-light">Capture</span>
+              <span className="text-white text-[16px] sm:text-[18px] font-light">Database &amp; Caching (Raw PHP, SQL)</span>
             </div>
 
             {/* Card 2 */}
             <div className="w-full max-w-md h-[72px] border border-white/10 rounded-lg flex items-center justify-between px-6 bg-white/[0.01]">
               <span className="text-white/30 text-[12px] tracking-[0.15em] uppercase font-mono-custom">Layer 2</span>
-              <span className="text-white text-[16px] sm:text-[18px] font-light">Process</span>
+              <span className="text-white text-[16px] sm:text-[18px] font-light">Theme Engineering (Bespoke WordPress Cores)</span>
             </div>
 
             {/* Card 3 */}
             <div className="w-full max-w-md h-[72px] border border-white/10 rounded-lg flex items-center justify-between px-6 bg-white/[0.01]">
               <span className="text-white/30 text-[12px] tracking-[0.15em] uppercase font-mono-custom">Layer 3</span>
-              <span className="text-white text-[16px] sm:text-[18px] font-light">Interface</span>
+              <span className="text-white text-[16px] sm:text-[18px] font-light">CRM Pipelines (HubSpot Webhook Sync)</span>
             </div>
 
           </motion.div>
@@ -719,17 +719,17 @@ export default function App() {
             <div>
               <div className="flex items-center gap-2 mb-8 text-white/70">
                 <SynapseXLogo className="w-4.5 h-4.5" />
-                <span className="text-[15px] font-medium tracking-tight">SynapseX</span>
+                <span className="text-[15px] font-medium tracking-tight">LBC // DEV</span>
               </div>
               <p className="text-white/40 text-[14px] sm:text-[15px] leading-relaxed max-w-sm font-mono-custom">
-                The next evolution of human-machine interaction. Built for those who refuse to be limited by biology alone.
+                The next evolution of custom web architectures. Built for those who refuse to be limited by bloated templates and page builders.
               </p>
             </div>
 
             {/* Bottom copyright row */}
             <div>
               <p className="text-white/25 text-[12px] mt-12 font-mono-custom">
-                (c) 2026 SynapseX Labs. All rights reserved.
+                (c) 2026 Lohith BC. All rights reserved.
               </p>
             </div>
 
