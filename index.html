@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth h-full antialiased">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lohith BC | Senior Web Developer & Digital Solutions Architect</title>
-  <meta name="description" content="Portfolio of Lohith BC, Senior Web Developer specializing in custom WordPress theme development, PHP orchestration, and high-performance digital architectures.">
+  <title>Lohith BC · Senior Web Developer &amp; WordPress Architect</title>
+  <meta name="description" content="Lohith BC, senior web developer and WordPress architect. High-performance PHP orchestration, design systems, HubSpot APIs, and digital solutions.">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,16 +13,19 @@
       theme: {
         extend: {
           colors: {
-            retroBg: '#f8fafc',
-            retroCard: 'rgba(255, 255, 255, 0.82)',
-            retroBorder: 'rgba(0, 0, 0, 0.07)',
-            retroAmber: '#2563eb', // Redirect to Cobalt Blue
-            retroGreen: '#059669', // Emerald Green
+            bg: '#fafafa',
+            fg: '#18181b',
+            'fg-muted': '#52525b',
+            'fg-faint': '#8a8a93',
+            accent: '#2563eb', // Cobalt Blue
+            line: '#e4e4e7',
+            'line-soft': '#f4f4f5',
+            'bg-elev': '#ffffff',
           },
           fontFamily: {
-            mono: ['Space Mono', 'monospace'],
-            display: ['Syne', 'sans-serif'],
             sans: ['Inter', 'sans-serif'],
+            serif: ['Fraunces', 'serif'],
+            mono: ['Space Mono', 'monospace'],
           }
         }
       }
@@ -32,7 +35,7 @@
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-retroBg text-slate-800 antialiased relative">
+<body class="min-h-full bg-bg text-fg relative">
 
   <!-- Interactive Warping Grid Canvas Background -->
   <canvas id="bg-canvas" class="fixed inset-0 w-full h-full -z-10 pointer-events-none"></canvas>
@@ -40,509 +43,453 @@
   <!-- Subtle Paper/Film Grain Overlay -->
   <div class="grain-overlay"></div>
 
+  <!-- Ambient background glow blobs (Replicating Surendar's gradient blur) -->
+  <div aria-hidden="true" class="pointer-events-none absolute right-[8%] top-1/4 z-0 h-[60vh] w-[60vh] rounded-full opacity-[0.08] blur-[120px]" style="background: radial-gradient(circle, var(--color-accent) 0%, transparent 60%)"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute left-[5%] top-[60%] z-0 h-[50vh] w-[50vh] rounded-full opacity-[0.05] blur-[100px]" style="background: radial-gradient(circle, #059669 0%, transparent 60%)"></div>
+
   <!-- Header / Navigation -->
-  <header class="fixed top-0 left-0 w-full z-50 bg-white/85 backdrop-blur-md border-b border-retroBorder">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+  <header class="fixed inset-x-0 top-0 z-50 transition-colors duration-500 border-b border-transparent bg-bg/55 backdrop-blur-md">
+    <div class="container-x flex h-16 items-center justify-between md:h-20">
       <!-- Logo / Brand -->
-      <a href="#" class="font-mono text-base tracking-wider text-slate-900 hover:text-theme-primary transition-colors flex items-center gap-2">
-        <span class="text-theme-primary font-bold">&lt;</span>
-        <span>LBC // DEPLOYMENT_ACTIVE</span>
-        <span class="text-theme-primary font-bold">&gt;</span>
+      <a class="font-display text-lg tracking-tight font-bold" aria-label="Lohith BC, home" href="#">
+        Lohith BC<span class="text-accent">.</span>
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden md:flex items-center gap-8 font-mono text-[11px] tracking-widest">
-        <a href="#hero" class="nav-link text-slate-500 hover:text-slate-950 transition-colors">HOME</a>
-        <a href="#about" class="nav-link text-slate-500 hover:text-slate-950 transition-colors">ABOUT</a>
-        <a href="#experience" class="nav-link text-slate-500 hover:text-slate-950 transition-colors">EXPERIENCE</a>
-        <a href="#portfolio" class="nav-link text-slate-500 hover:text-slate-950 transition-colors">WORK</a>
-        <a href="#skills" class="nav-link text-slate-500 hover:text-slate-950 transition-colors">SKILLS</a>
-        <a href="#contact" class="nav-link text-slate-500 hover:text-slate-950 transition-colors">CONTACT</a>
+      <nav class="hidden items-center gap-8 md:flex" aria-label="Primary">
+        <a class="link-underline text-sm transition-colors text-fg-muted hover:text-fg font-medium" href="#hero">Home</a>
+        <a class="link-underline text-sm transition-colors text-fg-muted hover:text-fg font-medium" href="#work">Work</a>
+        <a class="link-underline text-sm transition-colors text-fg-muted hover:text-fg font-medium" href="#about">About</a>
+        <a class="link-underline text-sm transition-colors text-fg-muted hover:text-fg font-medium" href="#contact">Contact</a>
+        
+        <!-- Social Icons -->
+        <span class="flex items-center gap-2 border-l border-line pl-6 ml-2" aria-label="Social links">
+          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:text-accent transition-colors">
+            <svg viewBox="0 0 24 24" class="h-[18px] w-[18px]" fill="currentColor"><path d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3.4 9h3.16v11.5H3.4V9Zm5.27 0h3.03v1.57h.04c.42-.8 1.45-1.65 2.98-1.65 3.19 0 3.78 2.1 3.78 4.83v6.75h-3.15v-5.98c0-1.43-.03-3.27-1.99-3.27-1.99 0-2.3 1.56-2.3 3.17v6.08H8.67V9Z"></path></svg>
+          </a>
+          <a href="https://github.com/lohithbc" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="flex h-9 w-9 items-center justify-center rounded-full text-fg-muted hover:text-accent transition-colors">
+            <svg viewBox="0 0 24 24" class="h-[18px] w-[18px]" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+          </a>
+        </span>
       </nav>
 
-      <!-- Mobile Menu Toggle Button (Dark burger lines) -->
-      <button class="md:hidden flex flex-col gap-1.5 focus:outline-none z-50 w-6 h-6 justify-center" id="mobile-menu-btn" aria-label="Toggle Menu">
-        <span class="w-full h-[2px] bg-slate-800 transition-all duration-300 origin-left" id="line1"></span>
-        <span class="w-full h-[2px] bg-slate-800 transition-all duration-300" id="line2"></span>
-        <span class="w-full h-[2px] bg-slate-800 transition-all duration-300 origin-left" id="line3"></span>
+      <!-- Mobile Menu Toggle Button -->
+      <button type="button" class="flex h-11 w-11 items-center justify-center md:hidden" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="relative block h-3 w-6">
+          <span class="absolute left-0 top-0 h-px w-6 bg-fg transition-transform duration-300" id="line1"></span>
+          <span class="absolute bottom-0 left-0 h-px w-6 bg-fg transition-transform duration-300" id="line3"></span>
+        </span>
       </button>
-    </div>
-
-    <!-- Mobile Navigation Menu (Light mode drop) -->
-    <div id="mobile-menu" class="hidden fixed top-20 left-0 w-full h-[calc(100vh-80px)] bg-white/95 backdrop-blur-md border-t border-retroBorder z-40 px-8 py-12 flex flex-col gap-6 font-mono text-sm tracking-widest">
-      <a href="#hero" class="mobile-nav-link text-slate-500 hover:text-slate-950 py-2 border-b border-retroBorder/50">HOME</a>
-      <a href="#about" class="mobile-nav-link text-slate-500 hover:text-slate-950 py-2 border-b border-retroBorder/50">ABOUT</a>
-      <a href="#experience" class="mobile-nav-link text-slate-500 hover:text-slate-950 py-2 border-b border-retroBorder/50">EXPERIENCE</a>
-      <a href="#portfolio" class="mobile-nav-link text-slate-500 hover:text-slate-950 py-2 border-b border-retroBorder/50">WORK</a>
-      <a href="#skills" class="mobile-nav-link text-slate-500 hover:text-slate-950 py-2 border-b border-retroBorder/50">SKILLS</a>
-      <a href="#contact" class="mobile-nav-link text-slate-500 hover:text-slate-950 py-2 border-b border-retroBorder/50">CONTACT</a>
     </div>
   </header>
 
-  <!-- Main HUD Dashboard Layout Grid -->
-  <main class="pt-28 pb-16 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+  <!-- Sticky Side Navigation (Replicating Surendar's jump menu) -->
+  <nav aria-label="Jump to section" class="fixed right-5 z-40 hidden flex-col items-end gap-3.5 lg:flex" style="top:50%; transform:translateY(-50%)">
+    <a href="#work" class="group flex items-center justify-end gap-3 py-0.5 nav-dot-link">
+      <span class="whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] transition-opacity duration-300 text-fg-muted opacity-0 group-hover:opacity-100">Work</span>
+      <span class="side-marker-dot" id="dot-work"></span>
+    </a>
+    <a href="#testimonials" class="group flex items-center justify-end gap-3 py-0.5 nav-dot-link">
+      <span class="whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] transition-opacity duration-300 text-fg-muted opacity-0 group-hover:opacity-100">Praise</span>
+      <span class="side-marker-dot" id="dot-testimonials"></span>
+    </a>
+    <a href="#about" class="group flex items-center justify-end gap-3 py-0.5 nav-dot-link">
+      <span class="whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] transition-opacity duration-300 text-fg-muted opacity-0 group-hover:opacity-100">About</span>
+      <span class="side-marker-dot" id="dot-about"></span>
+    </a>
+    <a href="#contact" class="group flex items-center justify-end gap-3 py-0.5 nav-dot-link">
+      <span class="whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] transition-opacity duration-300 text-fg-muted opacity-0 group-hover:opacity-100">Contact</span>
+      <span class="side-marker-dot" id="dot-contact"></span>
+    </a>
+  </nav>
+
+  <!-- Content Sections Container -->
+  <main id="main-content" class="flex-1">
     
-    <!-- LEFT PANEL: HUD Sidebar System Diagnostics (4 cols on desktop) -->
-    <aside class="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-28 lg:h-[calc(100vh-140px)] overflow-y-auto pr-0 lg:pr-2">
-      
-      <!-- Widget 1: System Health / Uptime -->
-      <div class="hud-panel p-5 rounded">
-        <div class="flex items-center justify-between border-b border-retroBorder pb-3 mb-4 font-mono text-xs uppercase tracking-wider">
-          <span class="text-theme-primary font-bold">[ SYSTEM_DIAGNOSTICS ]</span>
-          <span class="text-retroGreen font-bold animate-pulse">● LIVE</span>
-        </div>
-        <div class="font-mono text-xs text-slate-500 flex flex-col gap-2">
-          <div class="flex justify-between">
-            <span>SYS_VERSION:</span>
-            <span class="text-slate-800">LBC_OS_v3.4.1</span>
-          </div>
-          <div class="flex justify-between">
-            <span>UPTIME:</span>
-            <span class="text-slate-800 font-bold" id="uptime-counter">00:00:00</span>
-          </div>
-          <div class="flex justify-between">
-            <span>ENVIRONMENT:</span>
-            <span class="text-theme-primary" id="theme-version-text">PHP 8.2 // WP 6.x</span>
-          </div>
-          <div class="flex justify-between">
-            <span>LOC:</span>
-            <span class="text-slate-800">BENGALURU, IN</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Widget 1.5: Theme Selector HUD Control -->
-      <div class="hud-panel p-5 rounded">
-        <div class="flex items-center justify-between border-b border-retroBorder pb-3 mb-4 font-mono text-xs uppercase tracking-wider">
-          <span class="text-theme-primary font-bold transition-colors" id="theme-panel-title">[ HUD_COLOR_THEME ]</span>
-          <span class="text-slate-400 font-mono text-[9px]">SECURE</span>
-        </div>
-        <div class="flex items-center justify-around py-1">
-          <!-- Amber/Blue Default Theme Button -->
-          <button class="w-8 h-8 rounded-full border-2 border-blue-600 bg-blue-600/25 shadow-[0_0_8px_rgba(37,99,235,0.4)] focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn" id="theme-btn-amber" title="Cobalt Blue Theme" aria-label="Cobalt Blue Theme"></button>
-          <!-- Green Theme Button -->
-          <button class="w-8 h-8 rounded-full border-2 border-emerald-600 bg-emerald-600/10 focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn" id="theme-btn-green" title="Terminal Green Theme" aria-label="Terminal Green Theme"></button>
-          <!-- Cyan Theme Button -->
-          <button class="w-8 h-8 rounded-full border-2 border-cyan-600 bg-cyan-600/10 focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn" id="theme-btn-cyan" title="Cyber Cyan Theme" aria-label="Cyber Cyan Theme"></button>
-          <!-- Magenta Theme Button -->
-          <button class="w-8 h-8 rounded-full border-2 border-fuchsia-600 bg-fuchsia-600/10 focus:outline-none transition-all hover:scale-110 active:scale-95 theme-selector-btn" id="theme-btn-magenta" title="Pulse Magenta Theme" aria-label="Pulse Magenta Theme"></button>
-        </div>
-      </div>
-
-      <!-- Widget 2: Live Diagnostic Log Terminal -->
-      <div class="hud-panel p-5 rounded flex-grow flex flex-col min-h-[220px]">
-        <div class="flex items-center justify-between border-b border-retroBorder pb-3 mb-3 font-mono text-xs uppercase tracking-wider">
-          <span class="text-theme-primary font-bold">[ PROCESS_LOGGER ]</span>
-          <span class="text-slate-400 font-bold" id="log-speed-indicator">120ms</span>
-        </div>
-        <div class="console-logs-container flex-grow crt-screen p-3 bg-slate-50/50 border border-slate-200/60 rounded" id="console-logs">
-          <!-- Autoscrolling system process logs will print here -->
-        </div>
-      </div>
-
-      <!-- Widget 3: Core Resources Metric Bars -->
-      <div class="hud-panel p-5 rounded">
-        <div class="flex items-center justify-between border-b border-retroBorder pb-3 mb-4 font-mono text-xs uppercase tracking-wider">
-          <span class="text-theme-primary font-bold">[ PIPELINE_LOAD ]</span>
-          <span class="text-retroGreen font-bold">OPTIMAL</span>
-        </div>
-        <div class="flex flex-col gap-3.5 font-mono text-[10px] tracking-wider text-slate-500">
-          <div>
-            <div class="flex justify-between mb-1.5 uppercase">
-              <span>WordPress Core Overhead</span>
-              <span class="text-retroGreen font-bold" id="wp-load-pct">18%</span>
-            </div>
-            <div class="w-full h-2 bg-slate-100 border border-slate-200/60 rounded overflow-hidden p-[1px]">
-              <div class="h-full bg-retroGreen transition-all duration-500" style="width: 18%" id="wp-load-bar"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1.5 uppercase">
-              <span>Database Handshake Latency</span>
-              <span class="text-theme-primary font-bold" id="db-load-pct">42%</span>
-            </div>
-            <div class="w-full h-2 bg-slate-100 border border-slate-200/60 rounded overflow-hidden p-[1px]">
-              <div class="h-full bg-theme-primary transition-all duration-500" style="width: 42%" id="db-load-bar"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-1.5 uppercase">
-              <span>HubSpot API Sync Overhead</span>
-              <span class="text-slate-700 font-bold" id="api-load-pct">29%</span>
-            </div>
-            <div class="w-full h-2 bg-slate-100 border border-slate-200/60 rounded overflow-hidden p-[1px]">
-              <div class="h-full bg-slate-400 transition-all duration-500" style="width: 29%" id="api-load-bar"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </aside>
-
-    <!-- RIGHT PANEL: Main Content Stream (8 cols on desktop) -->
-    <div class="lg:col-span-8 flex flex-col gap-16">
-
-      <!-- Section 1: Hero -->
-      <section id="hero" class="hud-panel p-8 sm:p-12 rounded min-h-[60vh] flex flex-col justify-center relative overflow-hidden">
-        <!-- Overlay HUD coordinates -->
-        <div class="absolute top-4 right-4 hidden sm:block font-mono text-[8px] text-slate-400 tracking-widest">
-          LAT: 12.9716° N // LON: 77.5946° E
-        </div>
-        
-        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-theme-primary tracking-widest uppercase">
-          <span class="inline-block w-2 h-2 rounded-full bg-theme-primary pulse-dot"></span>
-          <span>[ WEB SOLUTIONS ARCHITECT ]</span>
-        </div>
-
-        <h1 class="font-display-custom font-extrabold text-4xl sm:text-5xl xl:text-6xl tracking-tight text-slate-900 mb-6 uppercase leading-[1.1]">
-          Orchestrating <br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-theme-primary to-blue-500 font-mono-custom text-3xl sm:text-4xl xl:text-5xl block mt-2">
-            &lt;HighPerformance /&gt;
-          </span> 
-          Digital Solutions.
-        </h1>
-
-        <!-- Subheading terminal box -->
-        <div class="w-full max-w-2xl mb-8 crt-screen p-4 border border-slate-200/60 bg-white/50 rounded">
-          <p class="font-mono text-xs sm:text-sm leading-relaxed text-slate-600">
-            <span class="text-theme-primary font-bold">lohith@bc:~$</span> cat summary.txt<br>
-            <span class="text-slate-700">Web Developer specializing in clean PHP engineering, bespoke WordPress ecosystems, fast static frontends, and dynamic webhook sync integrations. Ex-Trescon Global developer.</span>
-            <span class="animate-pulse bg-theme-primary inline-block w-[6px] h-4 ml-1"></span>
-          </p>
-        </div>
-
-        <!-- Action CTAs -->
-        <div class="flex flex-col sm:flex-row gap-4 font-mono text-xs uppercase tracking-widest">
-          <a href="#portfolio" class="px-8 py-4 bg-theme-primary hover:opacity-90 text-white font-bold transition-all text-center rounded border border-theme-primary shadow-[0_0_15px_rgba(var(--theme-color-rgb),0.25)] hover:shadow-[0_0_20px_rgba(var(--theme-color-rgb),0.45)]">
-            Explore Portfolio
-          </a>
-          <a href="#contact" class="px-8 py-4 bg-transparent hover:bg-slate-100/50 text-slate-700 font-bold transition-all text-center rounded border border-slate-200 hover:border-slate-400">
-            Get In Touch
-          </a>
-        </div>
-      </section>
-
-      <!-- Section 2: About Me -->
-      <section id="about" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
-        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-theme-primary uppercase tracking-widest">
-          <span>[ 01 // OVERVIEW ]</span>
-        </div>
-        
-        <h2 class="font-display-custom font-extrabold text-3xl text-slate-900 uppercase mb-6">
-          Profile Summary
-        </h2>
-        
-        <div class="text-slate-600 space-y-6 text-sm leading-relaxed">
-          <p>
-            I am a results-driven Web Developer with a strong focus on building resilient, responsive, and secure digital assets. Over the years, I have developed extensive experience bridging frontend aesthetics with complex backend workflows.
-          </p>
-          <p>
-            My specialties lie in optimizing <strong class="text-slate-900 font-semibold">WordPress architectures</strong>, writing scalable <strong class="text-slate-900 font-semibold">PHP scripts</strong>, integrating third-party APIs (HubSpot, payments, CRMs), and configuring custom digital tools. I focus on code maintainability, clean database structures, and high SEO performance.
-          </p>
-        </div>
-      </section>
-
-      <!-- Section 3: Professional Experience -->
-      <section id="experience" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
-        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-theme-primary uppercase tracking-widest">
-          <span>[ 02 // TIMELINE ]</span>
-        </div>
-
-        <h2 class="font-display-custom font-extrabold text-3xl text-slate-900 uppercase mb-8">
-          Work History
-        </h2>
-
-        <!-- Timeline Tree -->
-        <div class="relative border-l border-slate-200 pl-6 ml-2 flex flex-col gap-10">
+    <!-- Hero Section -->
+    <section id="hero" class="relative flex min-h-[85vh] flex-col justify-center overflow-hidden py-20 border-b border-line-soft">
+      <div class="container-x relative z-10">
+        <div class="max-w-2xl">
           
-          <!-- Experience Card 1 -->
-          <div class="relative">
-            <!-- Bullet Point node -->
-            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-retroBg border border-theme-primary shadow-[0_0_8px_rgba(var(--theme-color-rgb),0.6)]"></span>
-            
-            <div class="flex flex-col sm:flex-row sm:justify-between items-start gap-1 mb-2 font-mono text-xs">
-              <span class="text-slate-900 font-bold uppercase text-sm">Trescon Global Business Solutions</span>
-              <span class="text-theme-primary font-bold">[ 2022 — PRESENT ]</span>
-            </div>
-            <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider mb-3">
-              Role: Web Developer & CRM Integrations Lead
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed mb-4">
-              Engineered and maintained high-traffic web structures, customized WordPress theme frameworks, and developed custom PHP scripts to integrate multi-channel forms with marketing systems like HubSpot.
-            </p>
-            
-            <!-- Dubai FinTech Summit Highlight widget -->
-            <div class="crt-screen border border-slate-200 bg-slate-50/50 rounded p-4 font-mono text-xs">
-              <div class="flex justify-between border-b border-slate-200 pb-2 mb-3 text-[10px] uppercase text-theme-primary tracking-wider font-bold">
-                <span>[ ORCHESTRATION: DUBAI_FINTECH_SUMMIT ]</span>
-                <span class="text-retroGreen font-bold">ACTIVE</span>
-              </div>
-              <ul class="space-y-2 text-slate-600 text-[11px] leading-relaxed list-inside list-disc">
-                <li>Managed custom code stacks handling <strong class="text-slate-900">10K+ concurrent registrations</strong>.</li>
-                <li>Built dynamic script APIs connecting client-side checkouts with central HubSpot pipelines.</li>
-                <li>Implemented advanced server caching and assets bundling, reducing page load lag by 40%.</li>
-              </ul>
-            </div>
+          <!-- Eyebrows tags metadata -->
+          <div class="mb-7 flex max-w-[24rem] flex-col gap-2 font-mono text-xs">
+            <span class="eyebrow">Bengaluru, India</span>
+            <span class="eyebrow block text-fg-faint">Web Development / PHP / WordPress / API Syncs</span>
           </div>
 
-          <!-- Experience Card 2 -->
-          <div class="relative">
-            <!-- Bullet Point node -->
-            <span class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-retroBg border border-slate-400"></span>
-            
-            <div class="flex flex-col sm:flex-row sm:justify-between items-start gap-1 mb-2 font-mono text-xs">
-              <span class="text-slate-900 font-bold uppercase text-sm">Freelance Web Engineering</span>
-              <span class="text-slate-500">[ 2019 — 2022 ]</span>
-            </div>
-            <div class="font-mono text-[10px] text-slate-400 uppercase tracking-wider mb-3">
-              Role: PHP / Frontend Consultant
-            </div>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              Designed custom web templates, created custom plugins to override native WordPress loops, and optimized code layouts for small business marketing portals in HTML, CSS, and vanilla JS.
-            </p>
+          <!-- Massive Surendar-style display header -->
+          <h1 class="font-display leading-[0.92] tracking-[-0.03em]" style="font-size:clamp(3rem,7vw,6.2rem)">
+            <span class="block">Lohith</span>
+            <span class="block text-fg-faint">BC<span class="text-accent">.</span></span>
+          </h1>
+
+          <p class="mt-8 max-w-xl text-balance text-lg text-fg-muted md:text-xl leading-relaxed">
+            Orchestrating enterprise-scale web platforms with accessibility, clean PHP APIs, and custom WordPress systems.
+          </p>
+
+          <!-- Action Pill CTAs -->
+          <div class="mt-9 flex flex-wrap gap-4 font-sans text-sm font-medium">
+            <a class="rounded-full bg-fg px-7 py-3 text-white transition-transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0" href="#work">
+              View work
+            </a>
+            <a href="#contact" class="rounded-full border border-accent px-7 py-3 text-accent transition-all hover:bg-accent hover:text-bg active:scale-98">
+              Get in touch
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="rounded-full border border-line px-7 py-3 text-fg transition-colors hover:border-accent hover:text-accent">
+              Résumé ↗
+            </a>
           </div>
 
-        </div>
-      </section>
+          <!-- Bottom anchor indicator -->
+          <a href="#work" class="mt-14 inline-flex items-center gap-3 text-xs text-fg-faint transition-colors hover:text-accent font-mono tracking-widest uppercase">
+            <span class="h-10 w-px bg-line animate-pulse" aria-hidden="true"></span>
+            View my case studies
+          </a>
 
-      <!-- Section 4: Projects Portfolio -->
-      <section id="portfolio" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
-        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-theme-primary uppercase tracking-widest">
-          <span>[ 03 // ARCHIVE ]</span>
         </div>
+      </div>
+    </section>
 
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
-          <h2 class="font-display-custom font-extrabold text-3xl text-slate-900 uppercase">
-            Work Grid
+    <!-- Work Section -->
+    <section id="work" class="container-x py-24 md:py-32 border-b border-line-soft">
+      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-14">
+        <div>
+          <p class="eyebrow">[ Selected case studies ]</p>
+          <h2 class="mt-6 max-w-2xl font-serif-custom text-[clamp(2rem,5vw,3.6rem)] leading-[1.05] tracking-tight">
+            Enterprise systems, plugins, and web architectures - shipped at scale.
           </h2>
-          <!-- Monospace Filter Bar -->
-          <div class="flex flex-wrap gap-2 font-mono text-[10px] tracking-wider uppercase" id="portfolio-filters">
-            <button class="px-3 py-1.5 border border-theme-primary bg-theme-primary/10 text-theme-primary rounded transition-all hover:bg-theme-primary/25" data-filter="all">ALL</button>
-            <button class="px-3 py-1.5 border border-retroBorder bg-transparent text-slate-500 rounded transition-all hover:text-slate-800 hover:border-slate-400" data-filter="wp">WORDPRESS</button>
-            <button class="px-3 py-1.5 border border-retroBorder bg-transparent text-slate-500 rounded transition-all hover:text-slate-800 hover:border-slate-400" data-filter="php">PHP/API</button>
-            <button class="px-3 py-1.5 border border-retroBorder bg-transparent text-slate-500 rounded transition-all hover:text-slate-800 hover:border-slate-400" data-filter="frontend">FRONTEND</button>
+        </div>
+      </div>
+
+      <!-- Case Studies Portfolio Grid -->
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
+        
+        <!-- Case Study 1 -->
+        <div class="reveal-on-scroll">
+          <a class="group relative block overflow-hidden rounded-xl border border-line bg-bg-elev p-2 transition-all hover:shadow-lg" href="#work">
+            <!-- 4/3 Aspect Mockup Container -->
+            <div class="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-50 border border-line-soft flex items-center justify-center">
+              
+              <!-- Abstract CSS graphic for WP -->
+              <div class="absolute inset-0 flex flex-col justify-center p-8 bg-gradient-to-br from-blue-50/50 to-indigo-50/30">
+                <div class="w-12 h-12 rounded bg-blue-600/10 flex items-center justify-center border border-blue-600/20 text-blue-600 font-mono font-bold mb-4">W</div>
+                <div class="h-1.5 w-2/3 bg-slate-200 rounded mb-2.5"></div>
+                <div class="h-1.5 w-1/2 bg-slate-200 rounded mb-4"></div>
+                <div class="grid grid-cols-3 gap-2">
+                  <div class="h-8 bg-white border border-slate-100 rounded"></div>
+                  <div class="h-8 bg-white border border-slate-100 rounded"></div>
+                  <div class="h-8 bg-white border border-slate-100 rounded"></div>
+                </div>
+              </div>
+
+              <div class="absolute inset-0 bg-gradient-to-t from-bg/40 via-transparent to-transparent opacity-60"></div>
+              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-bg/85 px-3 py-1 font-mono text-[9px] uppercase tracking-widest text-accent backdrop-blur">
+                <svg viewBox="0 0 24 24" class="h-2.5 w-2.5" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+                Protected
+              </span>
+              <span class="absolute right-4 top-4 font-mono text-xs text-fg-faint">01</span>
+            </div>
+
+            <!-- Card text details -->
+            <div class="flex items-start justify-between gap-4 px-3 pt-5">
+              <div>
+                <h3 class="font-display text-lg leading-tight tracking-tight transition-colors group-hover:text-accent uppercase">
+                  Bespoke WordPress Core Engine
+                </h3>
+                <p class="mt-1 text-xs text-fg-muted">Enterprise Solutions - Custom Core Theme · 2024</p>
+              </div>
+              <span aria-hidden="true" class="mt-1 translate-x-0 text-fg-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent font-bold">↗</span>
+            </div>
+
+            <div class="mt-3 flex items-baseline gap-2 px-3">
+              <span class="font-serif-custom text-xl italic font-bold text-accent">40%+</span>
+              <span class="line-clamp-1 text-[11px] text-fg-muted font-mono uppercase tracking-wider">Improvement in page-speed latency benchmarks</span>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-1.5 px-3 pb-3">
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">WordPress</span>
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">Core API</span>
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">PHP 8.2</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Case Study 2 -->
+        <div class="reveal-on-scroll delay-100">
+          <a class="group relative block overflow-hidden rounded-xl border border-line bg-bg-elev p-2 transition-all hover:shadow-lg" href="#work">
+            <!-- 4/3 Aspect Mockup Container -->
+            <div class="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-50 border border-line-soft flex items-center justify-center">
+              
+              <!-- Abstract CSS graphic for API -->
+              <div class="absolute inset-0 flex flex-col justify-center p-8 bg-gradient-to-br from-emerald-50/50 to-teal-50/30">
+                <div class="w-12 h-12 rounded bg-emerald-600/10 flex items-center justify-center border border-emerald-600/20 text-emerald-600 font-mono font-bold mb-4">API</div>
+                <div class="h-1.5 w-1/2 bg-slate-200 rounded mb-2.5"></div>
+                <div class="h-1.5 w-3/4 bg-slate-200 rounded mb-4"></div>
+                <div class="flex items-center gap-3">
+                  <div class="w-6 h-6 rounded-full bg-emerald-600 animate-ping opacity-30"></div>
+                  <div class="h-2 w-16 bg-slate-300 rounded"></div>
+                </div>
+              </div>
+
+              <div class="absolute inset-0 bg-gradient-to-t from-bg/40 via-transparent to-transparent opacity-60"></div>
+              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-bg/85 px-3 py-1 font-mono text-[9px] uppercase tracking-widest text-accent backdrop-blur">
+                <svg viewBox="0 0 24 24" class="h-2.5 w-2.5" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+                Protected
+              </span>
+              <span class="absolute right-4 top-4 font-mono text-xs text-fg-faint">02</span>
+            </div>
+
+            <!-- Card text details -->
+            <div class="flex items-start justify-between gap-4 px-3 pt-5">
+              <div>
+                <h3 class="font-display text-lg leading-tight tracking-tight transition-colors group-hover:text-accent uppercase">
+                  HubSpot CRM Integration Pipelines
+                </h3>
+                <p class="mt-1 text-xs text-fg-muted">Marketing Orchestration - API Systems · 2025</p>
+              </div>
+              <span aria-hidden="true" class="mt-1 translate-x-0 text-fg-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent font-bold">↗</span>
+            </div>
+
+            <div class="mt-3 flex items-baseline gap-2 px-3">
+              <span class="font-serif-custom text-xl italic font-bold text-accent">100%</span>
+              <span class="line-clamp-1 text-[11px] text-fg-muted font-mono uppercase tracking-wider">Leads capture automation with validation checks</span>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-1.5 px-3 pb-3">
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">PHP curl</span>
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">HubSpot API</span>
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">Webhooks</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Case Study 3 -->
+        <div class="reveal-on-scroll">
+          <a class="group relative block overflow-hidden rounded-xl border border-line bg-bg-elev p-2 transition-all hover:shadow-lg" href="#work">
+            <!-- 4/3 Aspect Mockup Container -->
+            <div class="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-50 border border-line-soft flex items-center justify-center">
+              
+              <!-- Abstract CSS graphic for Dubai Fintech -->
+              <div class="absolute inset-0 flex flex-col justify-center p-8 bg-gradient-to-br from-amber-50/50 to-orange-50/30">
+                <div class="w-12 h-12 rounded bg-amber-600/10 flex items-center justify-center border border-amber-600/20 text-amber-600 font-mono font-bold mb-4">10K</div>
+                <div class="h-1.5 w-3/4 bg-slate-200 rounded mb-2.5"></div>
+                <div class="h-1.5 w-1/3 bg-slate-200 rounded mb-4"></div>
+                <div class="w-full h-2 bg-slate-200 rounded overflow-hidden">
+                  <div class="w-4/5 h-full bg-amber-500 rounded"></div>
+                </div>
+              </div>
+
+              <div class="absolute inset-0 bg-gradient-to-t from-bg/40 via-transparent to-transparent opacity-60"></div>
+              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-bg/85 px-3 py-1 font-mono text-[9px] uppercase tracking-widest text-accent backdrop-blur">
+                <svg viewBox="0 0 24 24" class="h-2.5 w-2.5" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+                Protected
+              </span>
+              <span class="absolute right-4 top-4 font-mono text-xs text-fg-faint">03</span>
+            </div>
+
+            <!-- Card text details -->
+            <div class="flex items-start justify-between gap-4 px-3 pt-5">
+              <div>
+                <h3 class="font-display text-lg leading-tight tracking-tight transition-colors group-hover:text-accent uppercase">
+                  Dubai FinTech Summit Portals
+                </h3>
+                <p class="mt-1 text-xs text-fg-muted">Trescon Global - High Scale Event · 2024</p>
+              </div>
+              <span aria-hidden="true" class="mt-1 translate-x-0 text-fg-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent font-bold">↗</span>
+            </div>
+
+            <div class="mt-3 flex items-baseline gap-2 px-3">
+              <span class="font-serif-custom text-xl italic font-bold text-accent">10,000+</span>
+              <span class="line-clamp-1 text-[11px] text-fg-muted font-mono uppercase tracking-wider">Concurrent user registrations handled smoothly</span>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-1.5 px-3 pb-3">
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">Server Load</span>
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">HubSpot Sync</span>
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">Caching</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Case Study 4 -->
+        <div class="reveal-on-scroll delay-100">
+          <a class="group relative block overflow-hidden rounded-xl border border-line bg-bg-elev p-2 transition-all hover:shadow-lg" href="#work">
+            <!-- 4/3 Aspect Mockup Container -->
+            <div class="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-50 border border-line-soft flex items-center justify-center">
+              
+              <!-- Abstract CSS graphic for blocks -->
+              <div class="absolute inset-0 flex flex-col justify-center p-8 bg-gradient-to-br from-fuchsia-50/50 to-pink-50/30">
+                <div class="w-12 h-12 rounded bg-fuchsia-600/10 flex items-center justify-center border border-fuchsia-600/20 text-fuchsia-600 font-mono font-bold mb-4">&lt;&gt;</div>
+                <div class="h-1.5 w-2/3 bg-slate-200 rounded mb-2.5"></div>
+                <div class="h-1.5 w-3/4 bg-slate-200 rounded mb-4"></div>
+                <div class="flex gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-fuchsia-500"></span>
+                  <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                  <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                </div>
+              </div>
+
+              <div class="absolute inset-0 bg-gradient-to-t from-bg/40 via-transparent to-transparent opacity-60"></div>
+              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-bg/85 px-3 py-1 font-mono text-[9px] uppercase tracking-widest text-accent backdrop-blur">
+                <svg viewBox="0 0 24 24" class="h-2.5 w-2.5" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+                Protected
+              </span>
+              <span class="absolute right-4 top-4 font-mono text-xs text-fg-faint">04</span>
+            </div>
+
+            <!-- Card text details -->
+            <div class="flex items-start justify-between gap-4 px-3 pt-5">
+              <div>
+                <h3 class="font-display text-lg leading-tight tracking-tight transition-colors group-hover:text-accent uppercase">
+                  Custom Gutenberg Blocks Schedule Grid
+                </h3>
+                <p class="mt-1 text-xs text-fg-muted">Dynamic Gutenberg Blocks - React Components · 2025</p>
+              </div>
+              <span aria-hidden="true" class="mt-1 translate-x-0 text-fg-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent font-bold">↗</span>
+            </div>
+
+            <div class="mt-3 flex items-baseline gap-2 px-3">
+              <span class="font-serif-custom text-xl italic font-bold text-accent">React</span>
+              <span class="line-clamp-1 text-[11px] text-fg-muted font-mono uppercase tracking-wider">Dynamic speaker filters resolving without page reloads</span>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-1.5 px-3 pb-3">
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">React JS</span>
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">Gutenberg Block</span>
+              <span class="rounded-full border border-line-soft px-2.5 py-0.5 text-[10px] text-fg-muted uppercase tracking-wider font-mono">React Hooks</span>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Testimonials / Praise Section (Replicating Surendar's section) -->
+    <section id="testimonials" class="container-x py-24 md:py-32 border-b border-line-soft">
+      <p class="eyebrow">[ Praise ]</p>
+      <h2 class="mt-6 max-w-2xl font-serif-custom text-[clamp(2rem,5vw,3.6rem)] leading-[1.05] tracking-tight">
+        Collaborating to deliver results.
+      </h2>
+
+      <!-- Testimonial Slider Grid -->
+      <div class="mt-14 max-w-3xl border-l border-accent/40 pl-6 md:pl-10 relative">
+        <!-- Floating quote icon in serif -->
+        <span class="font-serif-custom text-[5.5rem] leading-none absolute -left-8 -top-10 text-accent/10 pointer-events-none select-none">“</span>
+        
+        <div id="testimonials-carousel" class="min-h-[160px] flex items-center">
+          <!-- Live slide text will render here dynamically -->
+          <div class="transition-opacity duration-500 ease-out" id="testimonial-slide">
+            <p class="font-serif-custom text-xl md:text-2xl leading-relaxed italic text-fg-muted" id="testimonial-quote">
+              "Significant contributor in design delivery and business growth. True team player and a leader in collaborative environments."
+            </p>
+            <p class="mt-6 font-mono text-[10px] uppercase tracking-widest text-fg-faint" id="testimonial-author">
+              — Pradeep Joseph, Tech Director
+            </p>
           </div>
         </div>
 
-        <!-- Portfolio Projects Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="portfolio-grid">
+        <!-- Carousel navigation indicators -->
+        <div class="mt-8 flex gap-2" id="testimonial-indicators">
+          <button class="h-1.5 w-6 rounded-full bg-accent transition-all duration-300 testimonial-dot" data-index="0" aria-label="Slide 1"></button>
+          <button class="h-1.5 w-2 rounded-full bg-line transition-all duration-300 testimonial-dot" data-index="1" aria-label="Slide 2"></button>
+          <button class="h-1.5 w-2 rounded-full bg-line transition-all duration-300 testimonial-dot" data-index="2" aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section (Replicating Surendar's layouts & including your photo) -->
+    <section id="about" class="container-x py-24 md:py-32 border-b border-line-soft">
+      <div class="grid gap-12 lg:grid-cols-12 items-start">
+        
+        <!-- Left Side: Profile Text Summary -->
+        <div class="lg:col-span-7 flex flex-col justify-start">
+          <p class="eyebrow">[ About me ]</p>
+          <h2 class="mt-6 font-serif-custom text-[clamp(2rem,5vw,3.6rem)] leading-[1.05] tracking-tight">
+            Building reliable digital infrastructures.
+          </h2>
           
-          <!-- Project 1 (WordPress) -->
-          <div class="border border-slate-100 bg-white/70 shadow-[0_2px_8px_rgba(0,0,0,0.015)] rounded p-6 flex flex-col justify-between hover:border-theme-primary/50 transition-all group" data-category="wp">
-            <div>
-              <div class="flex justify-between items-center mb-4 font-mono text-[9px] text-slate-400 uppercase tracking-widest">
-                <span>[ CORE DEVELOPMENT ]</span>
-                <span class="text-theme-primary">WP_THEME</span>
-              </div>
-              <h3 class="font-mono text-sm font-bold text-slate-900 uppercase mb-2 group-hover:text-theme-primary transition-colors">
-                Bespoke WordPress Core Architecture
-              </h3>
-              <p class="text-slate-500 text-xs leading-relaxed mb-6">
-                Clean custom theme built from scratch without bulky third-party builders, implementing custom post types and dynamic taxonomies.
-              </p>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[9px] text-slate-400 uppercase pt-4 border-t border-slate-100">
-              <span>WP 6.x / PHP 8.1</span>
-              <span class="text-slate-800 font-bold hover:underline cursor-pointer">[ VIEW_DETAILS ]</span>
-            </div>
+          <div class="mt-8 space-y-6 text-sm text-fg-muted leading-relaxed">
+            <p>
+              I am a results-oriented Web Developer based in India, with specialized expertise bridging client requirements with scalable backend workflows. My career focuses on optimizing core architectures, writing clean PHP routines, and integrating HubSpot marketing automation portals.
+            </p>
+            <p>
+              During my tenure at <strong class="text-fg font-semibold">Trescon Global Business Solutions</strong>, I was responsible for custom WordPress theme engineering, database optimization, and high-performance server structures. I managed digital checkouts and data sync pipelines for major industry platforms like the <strong class="text-fg font-semibold">Dubai FinTech Summit</strong>, handling thousands of real-time checkouts and registration flows successfully.
+            </p>
+            <p class="font-handwritten-custom text-2xl text-accent mt-4">
+              Code precision meets retro passion.
+            </p>
           </div>
-
-          <!-- Project 2 (PHP/API) -->
-          <div class="border border-slate-100 bg-white/70 shadow-[0_2px_8px_rgba(0,0,0,0.015)] rounded p-6 flex flex-col justify-between hover:border-theme-primary/50 transition-all group" data-category="php">
-            <div>
-              <div class="flex justify-between items-center mb-4 font-mono text-[9px] text-slate-400 uppercase tracking-widest">
-                <span>[ INTEGRATION ]</span>
-                <span class="text-theme-primary">API_CONNECTOR</span>
-              </div>
-              <h3 class="font-mono text-sm font-bold text-slate-900 uppercase mb-2 group-hover:text-theme-primary transition-colors">
-                CRM HubSpot Form Synchronization
-              </h3>
-              <p class="text-slate-500 text-xs leading-relaxed mb-6">
-                A custom backend script that maps custom HTML fields, sanitizes inputs, and uses HubSpot APIs to queue form submissions.
-              </p>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[9px] text-slate-400 uppercase pt-4 border-t border-slate-100">
-              <span>HubSpot API / PHP curl</span>
-              <span class="text-slate-800 font-bold hover:underline cursor-pointer">[ VIEW_DETAILS ]</span>
-            </div>
-          </div>
-
-          <!-- Project 3 (WordPress) -->
-          <div class="border border-slate-100 bg-white/70 shadow-[0_2px_8px_rgba(0,0,0,0.015)] rounded p-6 flex flex-col justify-between hover:border-theme-primary/50 transition-all group" data-category="wp">
-            <div>
-              <div class="flex justify-between items-center mb-4 font-mono text-[9px] text-slate-400 uppercase tracking-widest">
-                <span>[ OPTIMIZATION ]</span>
-                <span class="text-theme-primary">WP_MODULE</span>
-              </div>
-              <h3 class="font-mono text-sm font-bold text-slate-900 uppercase mb-2 group-hover:text-theme-primary transition-colors">
-                Event Dynamic Schedule Grid
-              </h3>
-              <p class="text-slate-500 text-xs leading-relaxed mb-6">
-                Custom Gutenberg block showing active sessions, filtering speakers dynamically without page re-renders.
-              </p>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[9px] text-slate-400 uppercase pt-4 border-t border-slate-100">
-              <span>WP API / JS ES6</span>
-              <span class="text-slate-800 font-bold hover:underline cursor-pointer">[ VIEW_DETAILS ]</span>
-            </div>
-          </div>
-
-          <!-- Project 4 (Frontend) -->
-          <div class="border border-slate-100 bg-white/70 shadow-[0_2px_8px_rgba(0,0,0,0.015)] rounded p-6 flex flex-col justify-between hover:border-theme-primary/50 transition-all group" data-category="frontend">
-            <div>
-              <div class="flex justify-between items-center mb-4 font-mono text-[9px] text-slate-400 uppercase tracking-widest">
-                <span>[ INTERFACE ]</span>
-                <span class="text-theme-primary">HTML5_CSS3</span>
-              </div>
-              <h3 class="font-mono text-sm font-bold text-slate-900 uppercase mb-2 group-hover:text-theme-primary transition-colors">
-                Performance Portfolio Dashboard
-              </h3>
-              <p class="text-slate-500 text-xs leading-relaxed mb-6">
-                This responsive HUD developer dashboard featuring interactive 3D perspective grids and dynamic particle plexus.
-              </p>
-            </div>
-            <div class="flex justify-between items-center font-mono text-[9px] text-slate-400 uppercase pt-4 border-t border-slate-100">
-              <span>HTML5 / CSS / Canvas</span>
-              <span class="text-slate-800 font-bold hover:underline cursor-pointer">[ VIEW_DETAILS ]</span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Section 5: Skills Matrices -->
-      <section id="skills" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
-        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-theme-primary uppercase tracking-widest">
-          <span>[ 04 // TECH_STACK ]</span>
         </div>
 
-        <h2 class="font-display-custom font-extrabold text-3xl text-slate-900 uppercase mb-8">
-          Core Skills
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
-          
-          <!-- Category 1: Backend -->
-          <div class="border border-slate-200 bg-slate-50/50 rounded p-5">
-            <h3 class="text-slate-900 font-bold uppercase mb-4 border-b border-slate-200 pb-2 text-[11px] tracking-wider text-theme-primary">
-              // BACKEND_ORCHESTRATION
-            </h3>
-            <ul class="space-y-3 text-slate-600">
-              <li class="flex items-center justify-between">
-                <span>PHP (Core / WP API)</span>
-                <span class="text-retroGreen font-bold">● SENIOR</span>
-              </li>
-              <li class="flex items-center justify-between">
-                <span>SQL / Database</span>
-                <span class="text-slate-800">● ADVANCED</span>
-              </li>
-              <li class="flex items-center justify-between">
-                <span>Third-Party APIs</span>
-                <span class="text-retroGreen font-bold">● SENIOR</span>
-              </li>
-            </ul>
+        <!-- Right Side: Styled Profile Frame (Using your photo!) -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="relative max-w-[340px] w-full p-2 bg-white border border-line rounded-2xl shadow-sm">
+            <div class="aspect-[4/5] overflow-hidden rounded-xl bg-slate-50 border border-line-soft">
+              <img src="hero_portrait.jpg" alt="Lohith BC" class="w-full h-full object-cover grayscale brightness-95 contrast-105 hover:grayscale-0 transition-all duration-700">
+            </div>
+            <!-- Overlay caption in handwriting font -->
+            <div class="absolute bottom-4 left-6 right-6 p-3 bg-white/90 backdrop-blur-sm border border-line rounded-lg font-handwritten-custom text-xl text-center shadow-[0_4px_10px_-2px_rgba(0,0,0,0.05)]">
+              Lohith BC, Web Engineer
+            </div>
           </div>
-
-          <!-- Category 2: WordPress -->
-          <div class="border border-slate-200 bg-slate-50/50 rounded p-5">
-            <h3 class="text-slate-900 font-bold uppercase mb-4 border-b border-slate-200 pb-2 text-[11px] tracking-wider text-theme-primary">
-              // WP_ARCHITECTURE
-            </h3>
-            <ul class="space-y-3 text-slate-600">
-              <li class="flex items-center justify-between">
-                <span>Bespoke Themes</span>
-                <span class="text-retroGreen font-bold">● SENIOR</span>
-              </li>
-              <li class="flex items-center justify-between">
-                <span>Custom Plugins</span>
-                <span class="text-retroGreen font-bold">● SENIOR</span>
-              </li>
-              <li class="flex items-center justify-between">
-                <span>CRM Integrations</span>
-                <span class="text-retroGreen font-bold">● SENIOR</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Category 3: Frontend -->
-          <div class="border border-slate-200 bg-slate-50/50 rounded p-5">
-            <h3 class="text-slate-900 font-bold uppercase mb-4 border-b border-slate-200 pb-2 text-[11px] tracking-wider text-theme-primary">
-              // FRONTEND_ENGINE
-            </h3>
-            <ul class="space-y-3 text-slate-600">
-              <li class="flex items-center justify-between">
-                <span>HTML5 / Vanilla CSS</span>
-                <span class="text-retroGreen font-bold">● SENIOR</span>
-              </li>
-              <li class="flex items-center justify-between">
-                <span>JavaScript (ES6+)</span>
-                <span class="text-slate-800 font-bold">● ADVANCED</span>
-              </li>
-              <li class="flex items-center justify-between">
-                <span>Tailwind CSS</span>
-                <span class="text-slate-800">● ADVANCED</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Section 6: Contact Console -->
-      <section id="contact" class="hud-panel p-8 sm:p-10 rounded reveal-on-scroll">
-        <div class="flex items-center gap-2 mb-6 font-mono text-xs text-theme-primary uppercase tracking-widest">
-          <span>[ 05 // TRANSMIT ]</span>
         </div>
 
-        <h2 class="font-display-custom font-extrabold text-3xl text-slate-900 uppercase mb-6">
-          Contact Console
-        </h2>
+      </div>
+    </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="container-x py-24 md:py-32">
+      <p class="eyebrow">[ Contact ]</p>
+      <h2 class="mt-6 max-w-2xl font-serif-custom text-[clamp(2rem,5vw,3.6rem)] leading-[1.05] tracking-tight">
+        Let's discuss new projects.
+      </h2>
+
+      <div class="mt-14 max-w-2xl">
         <form class="space-y-6" id="contact-form" action="#" method="POST">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans text-xs">
             
             <div class="flex flex-col gap-2">
-              <label for="name" class="text-slate-500 uppercase tracking-wider">Name_Input</label>
-              <input type="text" id="name" name="name" required class="bg-white border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-theme-primary text-slate-800 font-mono text-xs transition-colors" placeholder="e.g. USER_NAME">
+              <label for="name" class="font-mono uppercase tracking-wider text-[10px] text-fg-muted">Your Name</label>
+              <input type="text" id="name" name="name" required class="form-input-custom px-4 py-3.5 focus:outline-none" placeholder="e.g. USER_NAME">
             </div>
 
             <div class="flex flex-col gap-2">
-              <label for="email" class="text-slate-500 uppercase tracking-wider">Email_Address</label>
-              <input type="email" id="email" name="email" required class="bg-white border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-theme-primary text-slate-800 font-mono text-xs transition-colors" placeholder="e.g. USER@DOMAIN.COM">
+              <label for="email" class="font-mono uppercase tracking-wider text-[10px] text-fg-muted">Your Email</label>
+              <input type="email" id="email" name="email" required class="form-input-custom px-4 py-3.5 focus:outline-none" placeholder="e.g. USER@DOMAIN.COM">
             </div>
 
           </div>
 
-          <div class="flex flex-col gap-2 font-mono text-xs">
-            <label for="message" class="text-slate-500 uppercase tracking-wider">Message_Payload</label>
-            <textarea id="message" name="message" rows="5" required class="bg-white border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-theme-primary text-slate-800 font-mono text-xs transition-colors resize-none" placeholder="ENTER MESSAGE PAYLOAD HERE..."></textarea>
+          <div class="flex flex-col gap-2 font-sans text-xs">
+            <label for="message" class="font-mono uppercase tracking-wider text-[10px] text-fg-muted">Message Payload</label>
+            <textarea id="message" name="message" rows="5" required class="form-input-custom px-4 py-3.5 focus:outline-none resize-none" placeholder="ENTER MESSAGE PAYLOAD HERE..."></textarea>
           </div>
 
-          <!-- Simulated Console Status Log inside the Form -->
-          <div class="font-mono text-[10px] text-slate-400 border border-slate-200 bg-slate-50 rounded p-3 min-h-[40px] flex items-center justify-between">
-            <span id="form-status-log" class="text-slate-500 select-none">[ STATUS: SYSTEM_IDLE ]</span>
-            <span class="text-[8px] opacity-50 uppercase">Port_8080</span>
+          <!-- Status Indicator Log -->
+          <div class="font-mono text-[9px] text-fg-faint border border-line-soft bg-slate-50 rounded-lg p-3 min-h-[40px] flex items-center justify-between">
+            <span id="form-status-log">[ STATUS: READY_TO_TRANSMIT ]</span>
+            <span class="text-[8px] opacity-40 uppercase font-bold">Secure SSL</span>
           </div>
 
-          <button type="submit" class="w-full py-4 bg-theme-primary hover:opacity-90 text-white font-bold font-mono text-xs uppercase tracking-widest rounded border border-theme-primary transition-all shadow-[0_0_15px_rgba(var(--theme-color-rgb),0.15)] hover:shadow-[0_0_20px_rgba(var(--theme-color-rgb),0.3)]">
-            Transmit Packet
+          <button type="submit" class="w-full py-4 bg-fg hover:opacity-90 text-white font-medium text-sm rounded-full transition-transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0">
+            Send message
           </button>
         </form>
-      </section>
+      </div>
+    </section>
 
-    </div>
   </main>
 
   <!-- Footer / Status Bar -->
-  <footer class="border-t border-retroBorder bg-white/85 backdrop-blur-md py-6 font-mono text-[10px] text-slate-400 tracking-wider">
+  <footer class="border-t border-line-soft bg-white py-8 font-mono text-[10px] text-fg-faint tracking-wider">
     <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
         © 2026 LOHITH_BC. ALL RIGHTS SECURED.
       </div>
       <!-- Real-time Footer Clock Widget -->
       <div class="flex items-center gap-4">
-        <span>LOC_TIME: <span class="text-slate-800" id="live-time">12:00:00 AM</span></span>
-        <span class="text-theme-primary font-bold">// SECURE_CHANNEL</span>
+        <span>LOC_TIME: <span class="text-fg-muted" id="live-time">12:00:00 AM</span></span>
+        <span class="text-accent font-bold">// SECURE_CHANNEL</span>
       </div>
     </div>
   </footer>
